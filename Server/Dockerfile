@@ -1,5 +1,8 @@
 FROM gcc:9.2
 
-WORKDIR /server
+WORKDIR /app
 
-ADD ./src /server
+ADD ./serversrc /server
+RUN cd /server && make
+
+ADD ./src /app

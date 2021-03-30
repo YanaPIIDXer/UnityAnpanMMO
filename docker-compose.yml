@@ -3,6 +3,6 @@ services:
   server:
     build: ./Server
     volumes:
-      - ./Server/src:/server
-      - /server/bin
+      - ./Server/src:/app
+      - /app/bin
     tty: true
