@@ -1,0 +1,8 @@
+version: "3.0"
+services:
+  server:
+    build: ./Server
+    volumes:
+      - ./Server/src:/server
+      - /server/bin
+    tty: true
