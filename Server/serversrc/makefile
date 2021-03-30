@@ -1,59 +1,59 @@
-# ƒRƒ“ƒpƒCƒ‰
-COMPILER  = gcc
-# ‚¨D‚«‚Èƒtƒ‰ƒO‚ð
+# ï¿½Rï¿½ï¿½ï¿½pï¿½Cï¿½ï¿½
+COMPILER  = g++
+# ï¿½ï¿½ï¿½Dï¿½ï¿½ï¿½Èƒtï¿½ï¿½ï¿½Oï¿½ï¿½
 CXXFLAGS    = -g -Wall -Werror -std=c++11 -D_LINUX 
-# ƒ‰ƒCƒuƒ‰ƒŠŠÖŒW‚ÌŽw’è
+# ï¿½ï¿½ï¿½Cï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ÖŒWï¿½ÌŽwï¿½ï¿½
 ifeq "$(shell getconf LONG_BIT)" "64"
   LDFLAGS = -L/usr/local/lib -L/usr/lib
 else
   LDFLAGS = -L/usr/local/lib -L/usr/lib
 endif
-# ƒCƒ“ƒNƒ‹[ƒhƒpƒX‚ÌŽw’èB‚±‚ê‚ð‚¿‚á‚ñ‚Æ‚µ‚Ä‚¨‚©‚È‚¢‚ÆDEPENDS(ˆË‘¶)ƒtƒ@ƒCƒ‹‚ª‚¤‚Ü‚­ì‚ê‚È‚¢
+# ï¿½Cï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½[ï¿½hï¿½pï¿½Xï¿½ÌŽwï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½DEPENDS(ï¿½Ë‘ï¿½)ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½È‚ï¿½
 INCLUDE   = -I../include -I/usr/local/include -I./include/YanaPServer
-# ¶¬‚³‚ê‚éÃ“Iƒ‰ƒCƒuƒ‰ƒŠ
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã“Iï¿½ï¿½ï¿½Cï¿½uï¿½ï¿½ï¿½ï¿½
 TARGETS   = bin/libyanapserver.a
-# ¶¬‚³‚ê‚éƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚Ìo—ÍƒfƒBƒŒƒNƒgƒŠ
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Cï¿½iï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìoï¿½Íƒfï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½
 TARGETDIR = ./
-# ƒ\[ƒXƒR[ƒh‚ÌˆÊ’u
+# ï¿½\ï¿½[ï¿½Xï¿½Rï¿½[ï¿½hï¿½ÌˆÊ’u
 SRCROOT   = .
-# ’†ŠÔƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚Ìo—ÍƒfƒBƒŒƒNƒgƒŠ
+# ï¿½ï¿½ï¿½Ôƒoï¿½Cï¿½iï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìoï¿½Íƒfï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½
 OBJROOT   = ./obj
-# ƒ\[ƒXƒfƒBƒŒƒNƒgƒŠ‚Ì’†‚ð(shell‚Ì)findƒRƒ}ƒ“ƒh‚Å‘–”j‚µ‚ÄƒTƒuƒfƒBƒŒƒNƒgƒŠ‚Ü‚ÅƒŠƒXƒg‰»‚·‚é
+# ï¿½\ï¿½[ï¿½Xï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½Ì’ï¿½ï¿½ï¿½(shellï¿½ï¿½)findï¿½Rï¿½}ï¿½ï¿½ï¿½hï¿½Å‘ï¿½ï¿½jï¿½ï¿½ï¿½ÄƒTï¿½uï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½Ü‚Åƒï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 SRCDIRS  := $(shell find $(SRCROOT) -type d)
-# ƒ\[ƒXƒfƒBƒŒƒNƒgƒŠ‚ðŒ³‚Éforeach–½—ß‚Å‘Scppƒtƒ@ƒCƒ‹‚ðƒŠƒXƒg‰»‚·‚é
+# ï¿½\ï¿½[ï¿½Xï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½foreachï¿½ï¿½ï¿½ß‚Å‘Scppï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 SOURCES   = $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.cpp))
-# ã‹L‚Ìcppƒtƒ@ƒCƒ‹‚ÌƒŠƒXƒg‚ðŒ³‚ÉƒIƒuƒWƒFƒNƒgƒtƒ@ƒCƒ‹–¼‚ðŒˆ’è
+# ï¿½ï¿½Lï¿½ï¿½cppï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìƒï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ÉƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 OBJECTS   = $(addprefix $(OBJROOT)/, $(SOURCES:.cpp=.o))
-# ƒ\[ƒXƒfƒBƒŒƒNƒgƒŠ‚Æ“¯‚¶\‘¢‚Å’†ŠÔƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚Ìo—ÍƒfƒBƒŒƒNƒgƒŠ‚ðƒŠƒXƒg‰»
+# ï¿½\ï¿½[ï¿½Xï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½Æ“ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½Å’ï¿½ï¿½Ôƒoï¿½Cï¿½iï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ìoï¿½Íƒfï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½
 OBJDIRS   = $(addprefix $(OBJROOT)/, $(SRCDIRS))
-# ˆË‘¶ƒtƒ@ƒCƒ‹.d‚ð.oƒtƒ@ƒCƒ‹‚©‚çì‚é
+# ï¿½Ë‘ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½.dï¿½ï¿½.oï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 DEPENDS   = $(OBJECTS:.o=.d)
 
-# ˆË‘¶ƒtƒ@ƒCƒ‹‚ðÃ“Iƒ‰ƒCƒuƒ‰ƒŠ‚ðì‚é
+# ï¿½Ë‘ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½Ã“Iï¿½ï¿½ï¿½Cï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 $(TARGETS): $(OBJECTS)
 	@if [ ! -e `dirname $@` ]; then mkdir -p `dirname $@`; fi
 	ar rv $(TARGETS) $(OBJECTS)
 	@rm -f $(OBJECTS)
 
-# ’†ŠÔƒoƒCƒiƒŠ‚ÌƒfƒBƒŒƒNƒgƒŠ‚ðŒ@‚è‚È‚ª‚ç.cpp‚ð’†ŠÔƒtƒ@ƒCƒ‹.o‚É
+# ï¿½ï¿½ï¿½Ôƒoï¿½Cï¿½iï¿½ï¿½ï¿½Ìƒfï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½@ï¿½ï¿½È‚ï¿½ï¿½ï¿½.cppï¿½ð’†ŠÔƒtï¿½@ï¿½Cï¿½ï¿½.oï¿½ï¿½
 $(OBJROOT)/%.o: $(SRCROOT)/%.cpp
 	@if [ ! -e `dirname $@` ]; then mkdir -p `dirname $@`; fi
 	$(COMPILER) $(CXXFLAGS) -MD $(INCLUDE) -o $@ -c $<
 
-# ˆË‘¶ŠÖŒW‚ÌÄ¶¬
+# ï¿½Ë‘ï¿½ï¿½ÖŒWï¿½ÌÄï¿½ï¿½ï¿½
 depend:
 $(OBJROOT)/%.d: $(SRCROOT)/%.cpp
 	@if [ ! -e `dirname $@` ]; then mkdir -p `dirname $@`; fi
 	$(COMPILER) $(CXXFLAGS) -MM -MG $(INCLUDE) -o $@ -c $<
 
-# ƒNƒŠ[ƒ“
+# ï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½
 clean:
 	@rm -rf obj
 
-# ƒŠƒrƒ‹ƒh
+# ï¿½ï¿½ï¿½rï¿½ï¿½ï¿½h
 rebuild:
 	@make clean
 	@make
 
-# ˆË‘¶ŠÖŒWƒtƒ@ƒCƒ‹
+# ï¿½Ë‘ï¿½ï¿½ÖŒWï¿½tï¿½@ï¿½Cï¿½ï¿½
 -include $(DEPENDS)
