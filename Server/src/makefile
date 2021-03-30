@@ -1,11 +1,11 @@
 COMPILER  = g++
 CXXFLAGS    = -g -Wall -Werror -std=c++11 -D_LINUX 
 ifeq "$(shell getconf LONG_BIT)" "64"
-  LDFLAGS = -L/usr/local/lib -L/usr/lib
+  LDFLAGS = -L/usr/local/lib -L/usr/lib -L/server/bin -lyanapserver 
 else
-  LDFLAGS = -L/usr/local/lib -L/usr/lib
+  LDFLAGS = -L/usr/local/lib -L/usr/lib -L/server/bin -lyanapserver 
 endif
-INCLUDE   = -I../include -I/usr/local/include -I./include/YanaPServer
+INCLUDE   = -I/usr/local/include -I/server/include 
 TARGETS   = bin/server.out
 TARGETDIR = ./
 SRCROOT   = .
@@ -18,7 +18,7 @@ DEPENDS   = $(OBJECTS:.o=.d)
 
 $(TARGETS): $(OBJECTS)
 	@if [ ! -e `dirname $@` ]; then mkdir -p `dirname $@`; fi
-	$(COMPILER) $(OBJECTS) -o $(TARGETS)
+	$(COMPILER) $(OBJECTS) $(LDFLAGS) -o $(TARGETS)
 	@rm -f $(OBJECTS)
 
 $(OBJROOT)/%.o: $(SRCROOT)/%.cpp
