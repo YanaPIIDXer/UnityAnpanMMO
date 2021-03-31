@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Net.Sockets;
@@ -41,8 +42,9 @@ namespace Network
                 Client = new TcpClient();
                 Client.Connect(Host, Port);
             }
-            catch
+            catch (Exception e)
             {
+                Debug.Log(e.Message);
                 return false;
             }
             return true;
