@@ -15,12 +15,6 @@ public:
     // デストラクタ
     virtual ~Peer();
 
-    // 接続された
-    virtual void OnConnect() override;
-
-    // 切断された
-    virtual void OnDisconnect(ESocketDisconnectReason Reason) override;
-
     // 受信した
     virtual void OnRecv(const char *pData, unsigned int Size) override;
 

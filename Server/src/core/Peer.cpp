@@ -5,24 +5,13 @@
 Peer::Peer(YanaPServer::Socket::ISocket *pSocket)
     : CPeerBase(pSocket)
 {
+    std::cout << "Peer::Peer" << std::endl;
 }
 
 // デストラクタ
 Peer::~Peer()
 {
-}
-
-// 接続された
-void Peer::OnConnect()
-{
-    // ここ呼ばれないんじゃね？
-    std::cout << "Peer::OnConnect" << std::endl;
-}
-
-// 切断された
-void Peer::OnDisconnect(ESocketDisconnectReason Reason)
-{
-    std::cout << "Peer:OnDisconnect" << std::endl;
+    std::cout << "Peer::~Peer" << std::endl;
 }
 
 // 受信した
