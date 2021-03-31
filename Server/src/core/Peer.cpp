@@ -15,7 +15,8 @@ Peer::~Peer()
 // 接続された
 void Peer::OnConnect()
 {
-    std::cout << "Peer::OnConnected" << std::endl;
+    // ここ呼ばれないんじゃね？
+    std::cout << "Peer::OnConnect" << std::endl;
 }
 
 // 切断された
