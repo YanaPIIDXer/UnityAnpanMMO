@@ -5,4 +5,6 @@ services:
     volumes:
       - ./Server/src:/app
       - /app/bin
+    ports:
+      - 1234:1234
     tty: true
