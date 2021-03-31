@@ -24,4 +24,10 @@ public class ConnectionTestButton : MonoBehaviour
         }
         Debug.Log("Connection Success!");
     }
+
+    void OnDestroy()
+    {
+        Debug.Log("Disconnect");
+        Connection.Disconnect();
+    }
 }
