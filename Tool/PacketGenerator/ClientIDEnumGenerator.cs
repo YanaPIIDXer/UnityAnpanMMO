@@ -10,12 +10,12 @@ namespace NativePacketGenerator
 	/// <summary>
 	/// PacketID.hを生成するクラス
 	/// </summary>
-	public class IDEnumGenerator
+	public class ClientIDEnumGenerator
 	{
 		/// <summary>
 		/// テンプレートファイル名.
 		/// </summary>
-		private static readonly string TemplateFileName = "templates\\PacketID.h";
+		private static readonly string TemplateFileName = "templates\\client\\PacketID.cs";
 
 		/// <summary>
 		/// クラス群.
@@ -31,7 +31,7 @@ namespace NativePacketGenerator
 		/// コンストラクタ
 		/// </summary>
 		/// <param name="InClasses">クラス群</param>
-		public IDEnumGenerator(List<ClassData> InClasses)
+		public ClientIDEnumGenerator(List<ClassData> InClasses)
 		{
 			Classes = InClasses;
 		}

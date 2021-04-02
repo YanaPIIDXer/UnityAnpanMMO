@@ -21,12 +21,12 @@ namespace NativePacketGenerator
 		/// <summary>
 		/// テンプレートファイル名.
 		/// </summary>
-		private static readonly string TemplateFileName = "templates\\client\\Template.h";
+		private static readonly string TemplateFileName = "templates\\client\\Template.cs";
 
 		/// <summary>
 		/// コンストラクタテンプレート名.
 		/// </summary>
-		private static readonly string ConstructorTemplateFileName = "templates\\client\\Constructor.h";
+		private static readonly string ConstructorTemplateFileName = "templates\\client\\Constructor.cs";
 
 		/// <summary>
 		/// 置換結果.

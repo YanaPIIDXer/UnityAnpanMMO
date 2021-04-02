@@ -48,7 +48,8 @@
   <ItemGroup>
     <Compile Include="ClassData.cs" />
     <Compile Include="ExcelParser.cs" />
-    <Compile Include="IDEnumGenerator.cs" />
+    <Compile Include="ClientIDEnumGenerator.cs" />
+    <Compile Include="ServerIDEnumGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ClientSourceGenerator.cs" />

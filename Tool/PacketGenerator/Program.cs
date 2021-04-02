@@ -48,10 +48,12 @@ namespace NativePacketGenerator
 				}
 			}
 
-			IDEnumGenerator GameServerIDGen = new IDEnumGenerator(Classes);
-			if (!GameServerIDGen.Generate(0, "PacketID")) { return; }
-			if (!GameServerIDGen.Write(ServerPath + "\\PacketID.h")) { return; }
-			if (!GameServerIDGen.Write(ClientPath + "\\PacketID.h")) { return; }
+			ServerIDEnumGenerator ServerIDGen = new ServerIDEnumGenerator(Classes);
+			if (!ServerIDGen.Generate(0, "PacketID")) { return; }
+			if (!ServerIDGen.Write(ServerPath + "\\PacketID.h")) { return; }
+			ClientIDEnumGenerator ClientIDGen = new ClientIDEnumGenerator(Classes);
+			if (!ClientIDGen.Generate(0, "PacketID")) { return; }
+			if (!ClientIDGen.Write(ClientPath + "\\PacketID.cs")) { return; }
 
 			foreach (var Class in Classes)
 			{
