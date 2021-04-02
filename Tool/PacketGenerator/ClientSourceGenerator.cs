@@ -96,8 +96,6 @@ namespace NativePacketGenerator
 				// ファイル名はここで置換.
 				Result = Result.Replace("$FILE_NAME$", Path.GetFileName(OutputPath));
 
-				if(LoadedSrc == Result) { return true; }
-
 				using (StreamWriter Writer = new StreamWriter(OutputPath, false, Encoding.GetEncoding("UTF-8")))
 				{
 					Writer.Write(Result);
