@@ -37,15 +37,15 @@ namespace NativePacketGenerator
 			{
 				switch(TypeName)
 				{
-					case "u8":
-					case "s8":
-					case "u16":
-					case "s16":
-					case "u32":
-					case "s32":
-					case "u64":
-					case "s64":
-					case "std::string":
+					case "byte":
+					case "char":
+					case "ushort":
+					case "short":
+					case "uint":
+					case "int":
+					case "ulong":
+					case "long":
+					case "string":
 					case "float":
 						return true;
 				}
