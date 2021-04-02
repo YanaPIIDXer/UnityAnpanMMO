@@ -10,7 +10,7 @@ namespace NativePacketGenerator
 	/// <summary>
 	/// ソース生成.
 	/// </summary>
-	public class SourceGenerator
+	public class ServerSourceGenerator
 	{
 		
 		/// <summary>
@@ -38,7 +38,7 @@ namespace NativePacketGenerator
 		/// </summary>
 		/// <param name="InClass">クラスデータ</param>
 		/// <param name="InOutputPath">出力先</param>
-		public SourceGenerator(ClassData InClass)
+		public ServerSourceGenerator(ClassData InClass)
 		{
 			Class = InClass;
 		}

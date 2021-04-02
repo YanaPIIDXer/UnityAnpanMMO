@@ -86,7 +86,7 @@ namespace NativePacketGenerator
 
 			foreach (var Class in Classes)
 			{
-				SourceGenerator Gen = new SourceGenerator(Class);
+				ServerSourceGenerator Gen = new ServerSourceGenerator(Class);
 				Console.WriteLine(Class.ClassName + "の出力中・・・");
 				if (!Gen.Generate())
 				{
