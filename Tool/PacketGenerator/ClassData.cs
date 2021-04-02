@@ -151,16 +151,6 @@ namespace NativePacketGenerator
 		private List<ClassMemberData> _Members = new List<ClassMemberData>();
 
 		/// <summary>
-		/// キャッシュサーバ向けか？
-		/// </summary>
-		public bool IsForCacheServer { get; private set; }
-
-		/// <summary>
-		/// ワードチェックサーバ向けか？
-		/// </summary>
-		public bool IsForWordCheckServer { get; private set; }
-
-		/// <summary>
 		/// プロセスパケットか？
 		/// </summary>
 		public bool IsProcessPacket
@@ -178,7 +168,6 @@ namespace NativePacketGenerator
 		public ClassData(string InClassName)
 		{
 			ClassName = InClassName;
-			IsForCacheServer = false;
 			ScopeName = "PacketID";
 		}
 
@@ -214,24 +203,5 @@ namespace NativePacketGenerator
 			}
 			EnumList[TypeName].Add(new EnumData(Name, Comment));
 		}
-
-		/// <summary>
-		/// キャッシュサーバ向けフラグを立てる。
-		/// </summary>
-		public void SetForCacheServerFlag()
-		{
-			IsForCacheServer = true;
-			ScopeName = "CachePacketID";
-		}
-
-		/// <summary>
-		/// ワードチェックサーバ向けフラグを立てる。
-		/// </summary>
-		public void SetForWordCheckServerFlag()
-		{
-			IsForWordCheckServer = true;
-			ScopeName = "WordCheckPacketID";
-		}
-
 	}
 }

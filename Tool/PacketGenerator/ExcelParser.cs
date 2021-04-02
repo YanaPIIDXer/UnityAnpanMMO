@@ -126,28 +126,6 @@ namespace NativePacketGenerator
 								Class.AddMember(Data);
 							}
 							break;
-
-						case "$FOR_CACHE_SERVER$":
-
-							{
-								string Value = WorkSheet.Cells[i, 2].Value.ToString();
-								if(Value == "1")
-								{
-									Class.SetForCacheServerFlag();
-								}
-							}
-							break;
-
-						case "$FOR_WORDCHECK_SERVER$":
-
-							{
-								string Value = WorkSheet.Cells[i, 2].Value.ToString();
-								if(Value == "1")
-								{
-									Class.SetForWordCheckServerFlag();
-								}
-							}
-							break;
 					}
 				}
 			}
