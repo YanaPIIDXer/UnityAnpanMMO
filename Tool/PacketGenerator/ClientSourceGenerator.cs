@@ -81,7 +81,7 @@ namespace NativePacketGenerator
 		/// <returns>成功したらtrue</returns>
 		public bool Write(string TargetPath)
 		{
-			var OutputPath = TargetPath + "\\" + Class.ClassName + ".h";
+			var OutputPath = TargetPath + "\\" + Class.ClassName + ".cs";
 			try
 			{
 				string LoadedSrc = "";
