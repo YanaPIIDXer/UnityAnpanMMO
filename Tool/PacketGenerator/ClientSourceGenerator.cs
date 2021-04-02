@@ -68,7 +68,7 @@ namespace NativePacketGenerator
 		/// <returns>読み込んだテキスト</returns>
 		private string ReadFromFile(string FileName)
 		{
-			StreamReader Reader = new StreamReader(FileName, Encoding.GetEncoding("Shift-JIS"));
+			StreamReader Reader = new StreamReader(FileName, Encoding.GetEncoding("UTF-8"));
 			string Result = Reader.ReadToEnd();
 			Reader.Close();
 			return Result;
@@ -87,7 +87,7 @@ namespace NativePacketGenerator
 				string LoadedSrc = "";
 				if(File.Exists(OutputPath))
 				{
-					using (StreamReader Reader = new StreamReader(OutputPath, Encoding.GetEncoding("Shift-JIS")))
+					using (StreamReader Reader = new StreamReader(OutputPath, Encoding.GetEncoding("UTF-8")))
 					{
 						LoadedSrc = Reader.ReadToEnd();
 					}
@@ -98,7 +98,7 @@ namespace NativePacketGenerator
 
 				if(LoadedSrc == Result) { return true; }
 
-				using (StreamWriter Writer = new StreamWriter(OutputPath, false, Encoding.GetEncoding("Shift-JIS")))
+				using (StreamWriter Writer = new StreamWriter(OutputPath, false, Encoding.GetEncoding("UTF-8")))
 				{
 					Writer.Write(Result);
 				}

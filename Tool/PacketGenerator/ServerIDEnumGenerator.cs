@@ -46,7 +46,7 @@ namespace NativePacketGenerator
 		{
 			try
 			{
-				StreamReader Reader = new StreamReader(TemplateFileName, Encoding.GetEncoding("Shift-JIS"));
+				StreamReader Reader = new StreamReader(TemplateFileName, Encoding.GetEncoding("UTF-8"));
 				Result = Reader.ReadToEnd();
 				Result = Result.Replace("$SCOPE_NAME$", ScopeName);
 				string IDs = "";
@@ -87,7 +87,7 @@ namespace NativePacketGenerator
 				string LoadedSrc = "";
 				if(File.Exists(FullPath))
 				{
-					using (StreamReader Reader = new StreamReader(FullPath, Encoding.GetEncoding("Shift-JIS")))
+					using (StreamReader Reader = new StreamReader(FullPath, Encoding.GetEncoding("UTF-8")))
 					{
 						LoadedSrc = Reader.ReadToEnd();
 					}
@@ -99,7 +99,7 @@ namespace NativePacketGenerator
 				// 更新不要.
 				if(LoadedSrc == Result) { return true; }
 
-				using (StreamWriter Writer = new StreamWriter(FullPath, false, Encoding.GetEncoding("Shift-JIS")))
+				using (StreamWriter Writer = new StreamWriter(FullPath, false, Encoding.GetEncoding("UTF-8")))
 				{
 					Writer.Write(Result);
 				}
