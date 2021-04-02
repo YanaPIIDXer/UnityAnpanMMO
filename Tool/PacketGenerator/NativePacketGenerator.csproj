@@ -51,6 +51,7 @@
     <Compile Include="IDEnumGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ClientSourceGenerator.cs" />
     <Compile Include="ServerSourceGenerator.cs" />
   </ItemGroup>
   <ItemGroup>

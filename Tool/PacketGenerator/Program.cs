@@ -86,44 +86,25 @@ namespace NativePacketGenerator
 
 			foreach (var Class in Classes)
 			{
-				ServerSourceGenerator Gen = new ServerSourceGenerator(Class);
 				Console.WriteLine(Class.ClassName + "の出力中・・・");
-				if (!Gen.Generate())
+				ServerSourceGenerator ServerGen = new ServerSourceGenerator(Class);
+				if (!ServerGen.Generate())
 				{
 					Console.WriteLine("ソースコードの生成に失敗しました。");
 					return;
 				}
-				if (!Gen.Write(ServerPath))
+				// サーバ
+				if (!ServerGen.Write(ServerPath))
 				{
 					Console.WriteLine("ゲームサーバへのソースコード書き込みに失敗しました。");
 					return;
 				}
-				if (!Class.IsForCacheServer && !Class.IsForWordCheckServer)
+				ClientSourceGenerator ClientGen = new ClientSourceGenerator(Class);
+				// クライアント
+				if (!ClientGen.Write(ClientPath))
 				{
-					// クライアント
-					if (!Gen.Write(ClientPath))
-					{
-						Console.WriteLine("クライアントへのソースコード書き込みに失敗しました。");
-						return;
-					}
-				}
-				else if (Class.IsForCacheServer)
-				{
-					// キャッシュサーバ
-					if (!Gen.Write(CacheServerPath))
-					{
-						Console.WriteLine("キャッシュサーバへのソースコード書き込みに失敗しました。");
-						return;
-					}
-				}
-				else
-				{
-					// ワードチェックサーバ
-					if (!Gen.Write(WordCheckServerPath))
-					{
-						Console.WriteLine("ワードチェックサーバへのソースコード書き込みに失敗しました。");
-						return;
-					}
+					Console.WriteLine("クライアントへのソースコード書き込みに失敗しました。");
+					return;
 				}
 			}
 
