@@ -1,43 +1,41 @@
 #ifndef __PACKET_H__
 #define __PACKET_H__
 
-#include "Serializable/Serializable.h"
-#include "Stream/MemoryStream.h"
+#include "YanaPOnlineUtil/Serializable/Serializable.h"
+#include "YanaPOnlineUtil/Stream/MemoryStream.h"
 
 namespace YanaPOnlineUtil
 {
-namespace Packet
-{
+	namespace Packet
+	{
 
-/**
+		/**
  * @class CPacket
- * @brief ƒpƒPƒbƒgŠî’êƒNƒ‰ƒX
+ * @brief ï¿½pï¿½Pï¿½bï¿½gï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½X
  */
-class CPacket : public Serializable::ISerializable
-{
+		class CPacket : public Serializable::ISerializable
+		{
 
-public:
-
-	/**
-	 * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		public:
+			/**
+	 * @brief ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^
 	 */
-	CPacket() {}
+			CPacket() {}
 
-	/**
-	 * @brief ƒfƒXƒgƒ‰ƒNƒ^
+			/**
+	 * @brief ï¿½fï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^
 	 */
-	virtual ~CPacket() {}
+			virtual ~CPacket() {}
 
-	/**
+			/**
 	 * @fn virtual unsigned char GetPacketId() const = 0
-	 * @brief ƒpƒPƒbƒg‚h‚cŽæ“¾
-	 * @return ƒpƒPƒbƒg‚h‚c
+	 * @brief ï¿½pï¿½Pï¿½bï¿½gï¿½hï¿½cï¿½æ“¾
+	 * @return ï¿½pï¿½Pï¿½bï¿½gï¿½hï¿½c
 	 */
-	virtual unsigned char GetPacketId() const = 0;
+			virtual unsigned char GetPacketId() const = 0;
+		};
 
-};
-
+	}
 }
-}
 
-#endif		// #ifndef __PACKET_H__
+#endif // #ifndef __PACKET_H__

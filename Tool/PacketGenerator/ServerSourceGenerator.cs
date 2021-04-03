@@ -160,7 +160,7 @@ namespace NativePacketGenerator
 			string FunctionStr = "";
 			if(!Class.IsPureClass)
 			{
-				FunctionStr = "virtual byte GetPacketID() const { return " + Class.ScopeName + "::" + Class.PacketID + "; }";
+				FunctionStr = "virtual unsigned char GetPacketId() const override { return " + Class.ScopeName + "::" + Class.PacketID + "; }";
 			}
 			Template = Template.Replace("$GET_PACKET_ID_FUNCTION$", FunctionStr);
 

@@ -9,7 +9,7 @@ else
   LDFLAGS = -L/usr/local/lib -L/usr/lib
 endif
 # �C���N���[�h�p�X�̎w��B����������Ƃ��Ă����Ȃ���DEPENDS(�ˑ�)�t�@�C�������܂����Ȃ�
-INCLUDE   = -I../include -I/usr/local/include -I./include/YanaPOnlineUtil
+INCLUDE   = -I../include -I/usr/local/include -I./include -I./include/YanaPOnlineUtil 
 # ���������ÓI���C�u����
 TARGETS   = bin/libyanaponlineutil.a
 # ���������o�C�i���t�@�C���̏o�̓f�B���N�g��
