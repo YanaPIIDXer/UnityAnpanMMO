@@ -156,7 +156,7 @@ namespace NativePacketGenerator
 			string FunctionStr = "";
 			if(!Class.IsPureClass)
 			{
-				FunctionStr = "virtual u8 GetPacketID() const { return " + Class.ScopeName + "." + Class.PacketID + "; }";
+				FunctionStr = "byte GetPacketID() { return " + Class.ScopeName + "." + Class.PacketID + "; }";
 			}
 			Template = Template.Replace("$GET_PACKET_ID_FUNCTION$", FunctionStr);
 
@@ -189,7 +189,7 @@ namespace NativePacketGenerator
 			string ConstructorMembers = "";
 			if(Class.IsProcessPacket)
 			{
-				ConstructorMembers += "u32 InClientId";
+				ConstructorMembers += "uint InClientId";
 				if(Class.Members.Count > 0)
 				{
 					ConstructorMembers += ", ";
@@ -224,7 +224,7 @@ namespace NativePacketGenerator
 				var Member = Class.Members[i];
 				if(Member.IsPrimitive)
 				{
-					SerializeFunctions += "pStream->Serialize(&" + Member.Name + ");\n\t\t";
+					SerializeFunctions += "pStream.Serialize(ref " + Member.Name + ");\n\t\t";
 				}
 				else
 				{
