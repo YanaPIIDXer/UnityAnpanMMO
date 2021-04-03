@@ -9,6 +9,7 @@
 
 #include "YanaPOnlineUtil/Packet/Packet.h"
 #include "YanaPOnlineUtil/Stream/MemoryStream.h"
+#include "type.h"
 #include "PacketID.h"
 
 
