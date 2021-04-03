@@ -19,6 +19,12 @@ public:
     virtual ~PeerStateBase() = 0;
 
 protected:
+    // パケット関数追加
+    void AddPacketFunc(byte PacketID, const PacketFunc &Func)
+    {
+        PacketFuncMap[PacketID] = Func;
+    }
+
 private:
     // 親
     Peer *pParent;
