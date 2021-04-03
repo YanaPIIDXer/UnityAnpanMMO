@@ -5,7 +5,7 @@ ifeq "$(shell getconf LONG_BIT)" "64"
 else
   LDFLAGS = -L/usr/local/lib -L/usr/lib -L/server/bin -lyanapserver -L/util/lib -Lyanaponlineutil 
 endif
-INCLUDE   = -I/usr/local/include -I/server/include -I/util/include 
+INCLUDE   = -I/usr/local/include -I. -I/server/include -I/util/include 
 TARGETS   = bin/server.out
 TARGETDIR = ./
 SRCROOT   = .

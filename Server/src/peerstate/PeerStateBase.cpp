@@ -1,5 +1,5 @@
 #include "PeerStateBase.h"
-#include "Peer/PeerBase.h"
+#include "core/Peer.h"
 
 // コンストラクタ
 PeerStateBase::PeerStateBase(Peer *pInParent)
