@@ -3,13 +3,11 @@
 
 #include <memory>
 #include "YanaPServer/Peer/PeerBase.h"
-using namespace YanaPServer::Peer;
-using namespace YanaPServer::Socket;
+#include "YanaPOnlineUtil/Packet/PacketSerializer.h"
+#include "type.h"
 
-namespace YanaPOnlineUtil::Packet
-{
-    class CPacket;
-}
+using namespace YanaPServer::Peer;
+using namespace YanaPOnlineUtil::Packet;
 
 class PeerStateBase;
 
@@ -30,12 +28,18 @@ public:
     void SendPacket(YanaPOnlineUtil::Packet::CPacket *pPacket);
 
     // Stateを設定
-    void SetState(PeerStateBase *pNewState) { pState.reset(pNewState); }
+    void SetState(PeerStateBase *pNewState);
 
 protected:
 private:
     // State
     std::shared_ptr<PeerStateBase> pState;
+
+    // パケットシリアライザ
+    CPacketSerializer PacketSerializer;
+
+    // パケットを受信した
+    void OnRecvPacket(byte PacketID, YanaPOnlineUtil::Stream::IMemoryStream *pStream);
 };
 
 #endif // #ifndef PEER_H

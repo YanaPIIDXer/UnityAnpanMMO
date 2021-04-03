@@ -8,6 +8,11 @@
 class Peer;
 typedef std::function<void(byte)> PacketFunc;
 
+namespace YanaPOnlineUtil::Stream
+{
+    class IMemoryStream;
+}
+
 // PeerのState基底クラス
 class PeerStateBase
 {
@@ -17,6 +22,9 @@ public:
 
     // デストラクタ
     virtual ~PeerStateBase() = 0;
+
+    // パケットを受信した
+    void OnRecvPacket(byte PacketID, YanaPOnlineUtil::Stream::IMemoryStream *pStream);
 
 protected:
     // パケット関数追加
