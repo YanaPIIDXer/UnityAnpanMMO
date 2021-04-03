@@ -51,6 +51,16 @@ namespace Network
         }
 
         /// <summary>
+        /// 送信
+        /// </summary>
+        /// <param name="Data">送信するデータ</param>
+        public void Send(byte[] Data)
+        {
+            // TODO:WriteAsyncにするべき？
+            Client.GetStream().Write(Data, 0, Data.Length);
+        }
+
+        /// <summary>
         /// 切断
         /// </summary>
         public void Disconnect()
