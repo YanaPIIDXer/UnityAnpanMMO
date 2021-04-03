@@ -5,8 +5,13 @@
 #include <functional>
 #include "type.h"
 
+namespace YanaPOnlineUtil::Stream
+{
+    class IMemoryStream;
+}
+
 class Peer;
-typedef std::function<void(byte)> PacketFunc;
+typedef std::function<void(YanaPOnlineUtil::Stream::IMemoryStream *)> PacketFunc;
 
 namespace YanaPOnlineUtil::Stream
 {

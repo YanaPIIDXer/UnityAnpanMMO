@@ -38,5 +38,6 @@ void Peer::OnRecvPacket(byte PacketID, IMemoryStream *pStream)
 {
     if (pState != nullptr)
     {
+        pState->OnRecvPacket(PacketID, pStream);
     }
 }
