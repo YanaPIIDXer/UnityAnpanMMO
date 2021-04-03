@@ -18,8 +18,9 @@ namespace Network.Packet
 		$CONSTRUCTOR$
 
 		bool Serialize(MemoryStreamInterface* pStream)
-{
+		{
 					$SERIALIZE_MEMBERS$
 					return true;
-}
+		}
+	}
 }
