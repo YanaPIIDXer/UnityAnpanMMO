@@ -10,13 +10,10 @@ namespace YanaPOnlineUtil::Stream
     class IMemoryStream;
 }
 
-class Peer;
-typedef std::function<void(YanaPOnlineUtil::Stream::IMemoryStream *)> PacketFunc;
+using namespace YanaPOnlineUtil::Stream;
 
-namespace YanaPOnlineUtil::Stream
-{
-    class IMemoryStream;
-}
+class Peer;
+typedef std::function<void(IMemoryStream *)> PacketFunc;
 
 // PeerのState基底クラス
 class PeerStateBase
@@ -29,7 +26,7 @@ public:
     virtual ~PeerStateBase() = 0;
 
     // パケットを受信した
-    void OnRecvPacket(byte PacketID, YanaPOnlineUtil::Stream::IMemoryStream *pStream);
+    void OnRecvPacket(byte PacketID, IMemoryStream *pStream);
 
 protected:
     // パケット関数追加
@@ -44,6 +41,9 @@ private:
 
     // パケット関数マップ
     std::map<byte, PacketFunc> PacketFuncMap;
+
+    // Pingを受信した
+    void OnRecvPing(IMemoryStream *pStream);
 };
 
 #endif // #ifndef PEERSTATEBASE_H
