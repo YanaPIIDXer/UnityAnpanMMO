@@ -1,3 +1,5 @@
+using YanaPOnlineUtil.Packet;
+
 namespace Network.Packet
 {
     public class $CLASS_NAME$ : public $BASE_CLASS_NAME$

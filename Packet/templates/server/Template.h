@@ -7,9 +7,12 @@
 #ifndef $INCLUDE_GUARD$
 #define $INCLUDE_GUARD$
 
-#include "PacketBase.h"
-#include "MemoryStream/MemoryStreamInterface.h"
+#include "YanaPOnlineUtil/Packet/Packet.h"
+#include "YanaPOnlineUtil/Stream/MemoryStream.h"
 $INCLUDES$
+
+using namespace YanaPOnlineUtil::Packet;
+using namespace YanaPOnlineUtil::Stream;
 
 /**
  * @brief $CLASS_COMMENT$
@@ -18,11 +21,10 @@ class $CLASS_NAME$ $BASE_CLASS_NAME$
 {
 
 public:
-
 	/**
 	 * @fn u8 GetPacketID() const
-	 * @brief ƒpƒPƒbƒg‚h‚cæ“¾.
-	 * @return ƒpƒPƒbƒg‚h‚c
+	 * @brief ï¿½pï¿½Pï¿½bï¿½gï¿½hï¿½cï¿½æ“¾.
+	 * @return ï¿½pï¿½Pï¿½bï¿½gï¿½hï¿½c
 	 */
 	$GET_PACKET_ID_FUNCTION$
 
@@ -31,29 +33,28 @@ public:
 	$MEMBERS$
 
 	/**
-	 * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * @brief ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^
 	 */
 	$CLASS_NAME$()
 	{
 	}
 
 	/**
-	 * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * @brief ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^
 	 */
 	$CONSTRUCTOR$
 
-
 	/**
 	 * @fn bool Serialize(MemoryStreamInterface *pStream)
-	 * @brief ƒVƒŠƒAƒ‰ƒCƒY
-	 * @param[in] pStream ƒXƒgƒŠ[ƒ€
-	 * @return ¬Œ÷‚µ‚½‚çtrue‚ğ•Ô‚·B
+	 * @brief ï¿½Vï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Cï¿½Y
+	 * @param[in] pStream ï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½
+	 * @return ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½trueï¿½ï¿½Ô‚ï¿½ï¿½B
 	 */
-	bool Serialize(MemoryStreamInterface *pStream)
+	bool Serialize(IMemoryStream *pStream)
 	{
 		$SERIALIZE_MEMBERS$
 		return true;
 	}
 };
 
-#endif		// #ifndef $INCLUDE_GUARD$
+#endif // #ifndef $INCLUDE_GUARD$
