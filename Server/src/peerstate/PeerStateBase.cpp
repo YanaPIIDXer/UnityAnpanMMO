@@ -14,6 +14,7 @@ PeerStateBase::PeerStateBase(Peer *pInParent)
 PeerStateBase::~PeerStateBase()
 {
 }
+
 // パケットを受信した
 void PeerStateBase::OnRecvPacket(byte PacketID, IMemoryStream *pStream)
 {
