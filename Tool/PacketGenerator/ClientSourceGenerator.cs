@@ -156,7 +156,7 @@ namespace NativePacketGenerator
 			string FunctionStr = "";
 			if(!Class.IsPureClass)
 			{
-				FunctionStr = "virtual u8 GetPacketID() const { return " + Class.ScopeName + "::" + Class.PacketID + "; }";
+				FunctionStr = "virtual u8 GetPacketID() const { return " + Class.ScopeName + "." + Class.PacketID + "; }";
 			}
 			Template = Template.Replace("$GET_PACKET_ID_FUNCTION$", FunctionStr);
 
@@ -219,10 +219,6 @@ namespace NativePacketGenerator
 			Template = Template.Replace("$PUT_MEMBERS$", PutMembers);
 
 			string SerializeFunctions = "";
-			if(Class.IsProcessPacket)
-			{
-				SerializeFunctions += "ProcessPacketBase::Serialize(pStream);\n\t\t";
-			}
 			for(int i = 0; i < Class.Members.Count; i++)
 			{
 				var Member = Class.Members[i];
