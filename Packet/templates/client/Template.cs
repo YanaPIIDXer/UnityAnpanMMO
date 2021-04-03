@@ -1,4 +1,4 @@
-using YanaPOnlineUtil.Packet;
+using YanaPOnlineUtil.Stream;
 
 namespace Network.Packet
 {
@@ -17,10 +17,10 @@ namespace Network.Packet
 
 		$CONSTRUCTOR$
 
-		bool Serialize(MemoryStreamInterface* pStream)
+		public override bool Serialize(IMemoryStream pStream)
 		{
-					$SERIALIZE_MEMBERS$
-					return true;
+			$SERIALIZE_MEMBERS$
+			return true;
 		}
 	}
 }

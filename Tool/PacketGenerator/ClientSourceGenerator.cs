@@ -139,6 +139,10 @@ namespace NativePacketGenerator
 			if(!Class.IsPureClass)
 			{
 				BaseClassName = Class.BaseClassName;
+				if (BaseClassName == "Packet")
+				{
+					BaseClassName = "YanaPOnlineUtil.Packet.Packet";
+				}
 			}
 			Template = Template.Replace("$BASE_CLASS_NAME$", BaseClassName);
 
@@ -148,7 +152,7 @@ namespace NativePacketGenerator
 			string FunctionStr = "";
 			if(!Class.IsPureClass)
 			{
-				FunctionStr = "byte GetPacketID() { return " + Class.ScopeName + "." + Class.PacketID + "; }";
+				FunctionStr = "public override byte PacketId { get { return (byte)" + Class.ScopeName + "." + Class.PacketID + "; } }";
 			}
 			Template = Template.Replace("$GET_PACKET_ID_FUNCTION$", FunctionStr);
 
@@ -216,7 +220,7 @@ namespace NativePacketGenerator
 				var Member = Class.Members[i];
 				if(Member.IsPrimitive)
 				{
-					SerializeFunctions += "pStream.Serialize(ref " + Member.Name + ");\n\t\t";
+					SerializeFunctions += "Stream.Serialize(ref " + Member.Name + ");\n\t\t";
 				}
 				else
 				{
