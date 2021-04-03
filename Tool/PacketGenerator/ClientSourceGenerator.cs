@@ -131,14 +131,6 @@ namespace NativePacketGenerator
 			// クラスコメント
 			Template = Template.Replace("$CLASS_COMMENT$", Class.Comment);
 
-			// 追加インクルード
-			string Includes = "";
-			foreach(var FileName in Class.Includes)
-			{
-				Includes += "#include \"" + FileName + "\"\n";
-			}
-			Template = Template.Replace("$INCLUDES$", Includes);
-
 			// クラス名.
 			Template = Template.Replace("$CLASS_NAME$", Class.ClassName);
 
