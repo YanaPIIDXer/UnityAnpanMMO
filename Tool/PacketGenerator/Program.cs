@@ -58,14 +58,14 @@ namespace NativePacketGenerator
 			foreach (var Class in Classes)
 			{
 				Console.Write(Class.ClassName + "の出力中・・・");
+				// サーバ
 				ServerSourceGenerator ServerGen = new ServerSourceGenerator(Class);
 				if (!ServerGen.Generate())
 				{
 					Console.Write("");
-					Console.WriteLine("ソースコードの生成に失敗しました。");
+					Console.WriteLine("サーバ側ソースコードの生成に失敗しました。");
 					return;
 				}
-				// サーバ
 				if (!ServerGen.Write(ServerPath))
 				{
 					Console.Write("");
@@ -74,6 +74,12 @@ namespace NativePacketGenerator
 				}
 				// クライアント
 				ClientSourceGenerator ClientGen = new ClientSourceGenerator(Class);
+				if (!ClientGen.Generate())
+				{
+					Console.Write("");
+					Console.WriteLine("クライアント側ソースコードの生成に失敗しました。");
+					return;
+				}
 				if (!ClientGen.Write(ClientPath))
 				{
 					Console.Write("");
