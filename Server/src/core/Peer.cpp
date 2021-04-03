@@ -9,7 +9,7 @@ using namespace YanaPOnlineUtil::Stream;
 
 // コンストラクタ
 Peer::Peer(YanaPServer::Socket::ISocket *pSocket)
-    : CPeerBase(pSocket)
+    : CPeerBase(pSocket), pState(nullptr)
 {
     std::cout << "Peer::Peer" << std::endl;
 }
