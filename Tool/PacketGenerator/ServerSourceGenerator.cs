@@ -148,7 +148,9 @@ namespace NativePacketGenerator
 			string BaseClassName = "";
 			if(!Class.IsPureClass)
 			{
-				BaseClassName = " : public " + Class.BaseClassName;
+				BaseClassName = Class.BaseClassName;
+				if (BaseClassName == "Packet") { BaseClassName = "CPacket"; }
+				BaseClassName = " : public " + BaseClassName;
 			}
 			Template = Template.Replace("$BASE_CLASS_NAME$", BaseClassName);
 
