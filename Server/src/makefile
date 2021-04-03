@@ -1,9 +1,9 @@
 COMPILER  = g++
 CXXFLAGS    = -g -Wall -Werror -std=c++11 -D_LINUX 
 ifeq "$(shell getconf LONG_BIT)" "64"
-  LDFLAGS = -L/usr/local/lib -L/usr/lib -L/server/bin -lyanapserver -L/util/lib -Lyanaponlineutil 
+  LDFLAGS = -L/usr/local/lib -L/usr/lib -L/server/bin -lyanapserver -L/util/bin -lyanaponlineutil 
 else
-  LDFLAGS = -L/usr/local/lib -L/usr/lib -L/server/bin -lyanapserver -L/util/lib -Lyanaponlineutil 
+  LDFLAGS = -L/usr/local/lib -L/usr/lib -L/server/bin -lyanapserver -L/util/bin -lyanaponlineutil 
 endif
 INCLUDE   = -I/usr/local/include -I. -I/server/include -I/util/include 
 TARGETS   = bin/server.out
