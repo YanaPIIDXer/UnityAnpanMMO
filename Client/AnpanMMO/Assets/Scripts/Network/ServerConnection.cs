@@ -56,6 +56,7 @@ namespace Network
         /// <param name="Data">送信するデータ</param>
         public void Send(byte[] Data)
         {
+            if (!IsConnected) { return; }
             // TODO:WriteAsyncにするべき？
             Client.GetStream().Write(Data, 0, Data.Length);
         }
