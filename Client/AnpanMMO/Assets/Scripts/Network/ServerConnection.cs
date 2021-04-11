@@ -32,6 +32,11 @@ namespace Network
         private byte[] Buffer = new byte[BufferSize];
 
         /// <summary>
+        /// 受信イベント
+        /// </summary>
+        public Action<byte[], int> OnRecv { set; private get; }
+
+        /// <summary>
         /// コンストラクタ
         /// </summary>
         public ServerConnection()
@@ -98,6 +103,10 @@ namespace Network
 
             if (RecvSize > 0)
             {
+                if (OnRecv != null)
+                {
+                    OnRecv(Buffer, RecvSize);
+                }
                 Sk.BeginReceive(Buffer, 0, BufferSize, SocketFlags.None, RecvCallback, Sk);
             }
         }
