@@ -56,7 +56,7 @@ namespace Network
             {
                 Sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 Sock.Connect(Host, Port);
-                Sock.BeginReceive(Buffer, 0, BufferSize, SocketFlags.None, RecvCallback, Sk);
+                Sock.BeginReceive(Buffer, 0, BufferSize, SocketFlags.None, RecvCallback, Sock);
             }
             catch (Exception e)
             {
