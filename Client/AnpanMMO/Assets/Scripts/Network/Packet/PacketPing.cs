@@ -3,24 +3,24 @@
 namespace Network.Packet
 {
     public class PacketPing : YanaPOnlineUtil.Packet.Packet
-	{
+    {
 
-		public override byte PacketId { get { return (byte)PacketID.Ping; } }
+        public override byte PacketId { get { return (byte)PacketID.Ping; } }
 
-		
 
-		
 
-		PacketPing()
-		{
-		}
 
-		
 
-		public override bool Serialize(IMemoryStream pStream)
-		{
-			
-			return true;
-		}
-	}
+        public PacketPing()
+        {
+        }
+
+
+
+        public override bool Serialize(IMemoryStream pStream)
+        {
+
+            return true;
+        }
+    }
 }
