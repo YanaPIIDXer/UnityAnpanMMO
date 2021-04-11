@@ -22,6 +22,16 @@ namespace Network
         public bool IsConnected { get { return (Sock != null && Sock.Connected); } }
 
         /// <summary>
+        /// バッファ長
+        /// </summary>
+        private static readonly int BufferSize = 2048;
+
+        /// <summary>
+        /// バッファ
+        /// </summary>
+        private byte[] Buffer = new byte[BufferSize];
+
+        /// <summary>
         /// コンストラクタ
         /// </summary>
         public ServerConnection()
@@ -41,6 +51,7 @@ namespace Network
             {
                 Sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 Sock.Connect(Host, Port);
+                Sock.BeginReceive(Buffer, 0, BufferSize, SocketFlags.None, RecvCallback, Sk);
             }
             catch (Exception e)
             {
@@ -68,6 +79,27 @@ namespace Network
             if (Sock == null) { return; }
             Sock.Close();
             Sock = null;
+        }
+
+        /// <summary>
+        /// 受信コールバック
+        /// </summary>
+        /// <param name="Result">受信結果</param>
+        private void RecvCallback(IAsyncResult Result)
+        {
+            var Sk = Result.AsyncState as Socket;
+
+            var RecvSize = -1;
+            try
+            {
+                RecvSize = Sk.EndReceive(Result);
+            }
+            catch { return; }
+
+            if (RecvSize > 0)
+            {
+                Sk.BeginReceive(Buffer, 0, BufferSize, SocketFlags.None, RecvCallback, Sk);
+            }
         }
     }
 }
