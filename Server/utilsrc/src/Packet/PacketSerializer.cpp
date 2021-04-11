@@ -11,30 +11,30 @@ namespace YanaPOnlineUtil
 namespace Packet
 {
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^
 CPacketSerializer::CPacketSerializer(const RecvFunction &InRecvFunc, const SendFunction &InSendFunc)
 	: RecvFunc(InRecvFunc)
 	, SendFunc(InSendFunc)
 {
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ï¿½fï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^
 CPacketSerializer::~CPacketSerializer()
 {
 }
 
-// óM‚µ‚½
+// ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½
 void CPacketSerializer::OnRecv(const char *pData, unsigned int Size)
 {
-	// ƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğƒuƒ`‚ŞB
-	Buffer.resize(Buffer.size() + Size);
+	// ï¿½oï¿½bï¿½tï¿½@ï¿½Éƒfï¿½[ï¿½^ï¿½ï¿½ï¿½uï¿½`ï¿½ï¿½ï¿½ŞB
 	unsigned int Begin = Buffer.size();
+	Buffer.resize(Buffer.size() + Size);
 	for (unsigned int i = 0; i < Size; i++)
 	{
 		Buffer[Begin + i] = pData[i];
 	}
 
-	// ƒwƒbƒ_‚ÌƒVƒŠƒAƒ‰ƒCƒY
+	// ï¿½wï¿½bï¿½_ï¿½ÌƒVï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Cï¿½Y
 	CMemoryStreamReader StreamReader(&Buffer[0], Buffer.size());
 	CPacketHeader Header;
 	if (!Header.Serialize(&StreamReader)) { return; }
@@ -42,34 +42,34 @@ void CPacketSerializer::OnRecv(const char *pData, unsigned int Size)
 	unsigned int PacketSize = CPacketHeader::HeaderSize + Header.GetSize();
 	if (Buffer.size() < PacketSize) { return; }
 
-	// óM‚É¬Œ÷‚µ‚Ä‚¢‚½‚çƒoƒbƒtƒ@‚©‚çÁ‹B
+	// ï¿½ï¿½Mï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½bï¿½tï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 	for (unsigned int i = 0; i < PacketSize; i++)
 	{
 		Buffer.erase(Buffer.begin());
 	}
 
-	// óMŠÖ”‚ÉƒpƒPƒbƒg‚h‚c‚ÆƒXƒgƒŠ[ƒ€‚ğ“Š‚°‚éB
+	// ï¿½ï¿½Mï¿½Öï¿½ï¿½Éƒpï¿½Pï¿½bï¿½gï¿½hï¿½cï¿½ÆƒXï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ğ“Š‚ï¿½ï¿½ï¿½B
 	RecvFunc(Header.GetPacketId(), &StreamReader);
 }
 
-// ‘—M.
+// ï¿½ï¿½ï¿½M.
 void CPacketSerializer::Send(CPacket *pPacket)
 {
-	// ƒpƒPƒbƒgƒTƒCƒYŒvZ
+	// ï¿½pï¿½Pï¿½bï¿½gï¿½Tï¿½Cï¿½Yï¿½vï¿½Z
 	CMemorySizeCaliculator SizeCaliculator;
 	SizeCaliculator.Serialize(pPacket);
 
-	// ƒVƒŠƒAƒ‰ƒCƒY–{”Ô
+	// ï¿½Vï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Cï¿½Yï¿½{ï¿½ï¿½
 	CMemoryStreamWriter StreamWriter(SizeCaliculator.GetSize() + CPacketHeader::HeaderSize);
 
-	// ƒwƒbƒ_
+	// ï¿½wï¿½bï¿½_
 	CPacketHeader Header(pPacket->GetPacketId(), SizeCaliculator.GetSize());
 	StreamWriter.Serialize(&Header);
 
-	// ƒpƒPƒbƒg
+	// ï¿½pï¿½Pï¿½bï¿½g
 	StreamWriter.Serialize(pPacket);
 
-	// ‘—M
+	// ï¿½ï¿½ï¿½M
 	SendFunc(StreamWriter.GetBuffer(), StreamWriter.GetSize());
 }
 
