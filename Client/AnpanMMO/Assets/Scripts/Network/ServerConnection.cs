@@ -12,14 +12,14 @@ namespace Network
     public class ServerConnection
     {
         /// <summary>
-        /// TCPクライアント
+        /// ソケット
         /// </summary>
-        private TcpClient Client = null;
+        private Socket Sock = null;
 
         /// <summary>
         /// 接続されているか？
         /// </summary>
-        public bool IsConnected { get { return (Client != null && Client.Connected); } }
+        public bool IsConnected { get { return (Sock != null && Sock.Connected); } }
 
         /// <summary>
         /// コンストラクタ
@@ -39,8 +39,8 @@ namespace Network
         {
             try
             {
-                Client = new TcpClient();
-                Client.Connect(Host, Port);
+                Sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                Sock.Connect(Host, Port);
             }
             catch (Exception e)
             {
@@ -57,8 +57,7 @@ namespace Network
         public void Send(byte[] Data)
         {
             if (!IsConnected) { return; }
-            // TODO:WriteAsyncにするべき？
-            Client.GetStream().Write(Data, 0, Data.Length);
+            Sock.Send(Data);
         }
 
         /// <summary>
@@ -66,9 +65,9 @@ namespace Network
         /// </summary>
         public void Disconnect()
         {
-            if (Client == null) { return; }
-            Client.Close();
-            Client = null;
+            if (Sock == null) { return; }
+            Sock.Close();
+            Sock = null;
         }
     }
 }
