@@ -1,4 +1,5 @@
 #include "AreaManager.h"
+#include "Area.h"
 
 AreaManager AreaManager::Instance;
 
@@ -10,6 +11,17 @@ AreaManager::AreaManager()
 // デストラクタ
 AreaManager::~AreaManager()
 {
+}
+
+// エリア生成
+void AreaManager::Make(uint Id)
+{
+    if (AreaMap.find(Id) != AreaMap.end())
+    {
+        return;
+    }
+
+    AreaMap[Id] = AreaPtr(new Area());
 }
 
 // エリア取得

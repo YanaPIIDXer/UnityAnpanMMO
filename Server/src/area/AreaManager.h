@@ -14,6 +14,9 @@ public:
     // デストラクタ
     ~AreaManager();
 
+    // エリア生成
+    void Make(uint Id);
+
     // エリア取得
     std::weak_ptr<Area> Get(uint Id) const;
 
