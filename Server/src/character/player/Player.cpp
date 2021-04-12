@@ -3,7 +3,7 @@
 
 // コンストラクタ
 Player::Player(Peer *pInOwner, const Vector &InPosition, float InRotation)
-    : Character(pInOwner->GetId(), InPosition, InRotation), pOwner(pInOwner)
+    : Character(pInOwner->GetId(), nullptr, InPosition, InRotation), pOwner(pInOwner)
 {
 }
 

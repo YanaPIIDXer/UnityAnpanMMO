@@ -1,8 +1,8 @@
 #include "Character.h"
 
 // コンストラクタ
-Character::Character(uint InId, const Vector &InPosition, float InRotation)
-    : Id(InId), Position(InPosition), Rotation(InRotation)
+Character::Character(uint InId, Area *pInArea, const Vector &InPosition, float InRotation)
+    : Id(InId), pArea(pInArea), Position(InPosition), Rotation(InRotation)
 {
 }
 

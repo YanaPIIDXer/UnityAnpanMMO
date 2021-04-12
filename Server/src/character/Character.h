@@ -4,12 +4,14 @@
 #include "type.h"
 #include "math/Vector.h"
 
+class Area;
+
 // キャラクタクラス
 class Character
 {
 public:
     // コンストラクタ
-    Character(uint InId, const Vector &InPosition, float InRotation);
+    Character(uint InId, Area *pInArea, const Vector &InPosition, float InRotation);
 
     // デストラクタ
     virtual ~Character() = 0;
@@ -29,10 +31,21 @@ public:
     // 回転を設定
     void SetRotation(float NewRotation) { Rotation = NewRotation; }
 
+    // 所属エリア変更
+    void ChangeArea(Area *pNewArea, const Vector &NewPosition, float NewRotation)
+    {
+        pArea = pNewArea;
+        Position = NewPosition;
+        Rotation = NewRotation;
+    }
+
 protected:
 private:
     // ID
     uint Id;
+
+    // 所属エリア
+    Area *pArea;
 
     // 座標
     Vector Position;
