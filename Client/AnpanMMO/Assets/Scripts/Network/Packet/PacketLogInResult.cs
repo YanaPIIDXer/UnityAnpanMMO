@@ -7,7 +7,7 @@ namespace Network.Packet
 
 		public override byte PacketId { get { return (byte)PacketID.LogInResult; } }
 
-		enum ResultCode
+		public enum ResultCode
 	{
 		//! 成功
 		Success,
@@ -16,7 +16,7 @@ namespace Network.Packet
 	};
 
 		//! リザルトコード
-	int Result;
+	public int Result;
 	
 
 		public PacketLogInResult()

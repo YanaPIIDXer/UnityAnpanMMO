@@ -160,7 +160,7 @@ namespace NativePacketGenerator
 			string Enums = "";
 			foreach(var KeyValue in Class.EnumList)
 			{
-				Enums += "enum " + KeyValue.Key + "\n\t{\n";
+				Enums += "public enum " + KeyValue.Key + "\n\t{\n";
 				foreach(var Data in  Class.EnumList[KeyValue.Key])
 				{
 					Enums += "\t\t//! " + Data.Comment + "\n";
@@ -177,7 +177,7 @@ namespace NativePacketGenerator
 			{
 				var MemberData = Class.Members[i];
 				Members += "//! " + MemberData.Comment + "\n\t";
-				Members += MemberData.TypeName + " " + MemberData.Name + ";\n\t";
+				Members += "public " + MemberData.TypeName + " " + MemberData.Name + ";\n\t";
 			}
 			Template = Template.Replace("$MEMBERS$", Members);
 
