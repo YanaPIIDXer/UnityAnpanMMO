@@ -25,9 +25,15 @@ void PeerStateBase::OnRecvPacket(byte PacketID, IMemoryStream *pStream)
     }
 }
 
+// パケット送信
+void PeerStateBase::SendPacket(CPacket *pPacket)
+{
+    pParent->SendPacket(pPacket);
+}
+
 // Pingを受信した
 void PeerStateBase::OnRecvPing(IMemoryStream *pStream)
 {
     PacketPing Ping;
-    pParent->SendPacket(&Ping);
+    SendPacket(&Ping);
 }

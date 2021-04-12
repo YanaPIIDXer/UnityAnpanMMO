@@ -12,6 +12,13 @@ namespace YanaPOnlineUtil::Stream
 
 using namespace YanaPOnlineUtil::Stream;
 
+namespace YanaPOnlineUtil::Packet
+{
+    class CPacket;
+}
+
+using namespace YanaPOnlineUtil::Packet;
+
 class Peer;
 typedef std::function<void(IMemoryStream *)> PacketFunc;
 
@@ -34,6 +41,9 @@ protected:
     {
         PacketFuncMap[PacketID] = Func;
     }
+
+    // パケット送信
+    void SendPacket(CPacket *pPacket);
 
 private:
     // 親
