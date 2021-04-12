@@ -40,7 +40,7 @@ public class ConnectionTestButton : MonoBehaviour
             return;
         }
         Debug.Log("Connection Success!");
-        Serializer.Send(new PacketPing());
+        Serializer.Send(new PacketLogInRequest());
     }
 
     /// <summary>
@@ -66,6 +66,14 @@ public class ConnectionTestButton : MonoBehaviour
             case Network.Packet.PacketID.Ping:
 
                 Debug.Log("Receive Ping!");
+                break;
+
+            case Network.Packet.PacketID.LogInResult:
+
+                {
+                    PacketLogInResult Result = new PacketLogInResult();
+                    Result.Serialize(Stream);
+                }
                 break;
         }
     }
