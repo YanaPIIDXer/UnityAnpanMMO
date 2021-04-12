@@ -14,6 +14,9 @@ public:
     // デストラクタ
     virtual ~Player();
 
+    // 所有者を取得
+    Peer *GetOwner() const { return pOwner; }
+
 protected:
 private:
     // 所有者
