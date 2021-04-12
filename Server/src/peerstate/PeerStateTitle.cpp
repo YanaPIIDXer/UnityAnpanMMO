@@ -2,6 +2,8 @@
 #include "PeerStateActive.h"
 #include "packet/PacketLogInRequest.h"
 #include "Packet/PacketLogInResult.h"
+#include "core/Peer.h"
+#include "math/Vector.h"
 
 // コンストラクタ
 PeerStateTitle::PeerStateTitle(Peer *pInParent)
@@ -27,6 +29,9 @@ void PeerStateTitle::OnRecvLogIn(IMemoryStream *pStream)
     // 何もしていないのでとりあえず成功を返している
     PacketLogInResult Result(PacketLogInResult::ResultCode::Success);
     SendPacket(&Result);
+
+    // TODO:本来ならDBから引っ張ってきたデータを放り込む
+    GetParent()->ConfigureCharacter(Vector::Zero, 0.0f);
 
     SetNextState(new PeerStateActive(GetParent()));
 }
