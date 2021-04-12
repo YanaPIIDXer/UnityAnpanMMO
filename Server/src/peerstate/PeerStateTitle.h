@@ -3,7 +3,7 @@
 
 #include "PeerStateBase.h"
 
-// タイトルステート
+// PeerState: タイトル
 class PeerStateTitle : public PeerStateBase
 {
 public:
