@@ -13,6 +13,12 @@ public:
     // デストラクタ
     ~Area();
 
+    // プレイヤー入場
+    void JoinPlayer(Player *pPlayer);
+
+    // プレイヤー退場
+    void LeavePlayer(uint Id);
+
 private:
     // プレイヤーマネージャ
     PlayerManager PlayerMgr;
