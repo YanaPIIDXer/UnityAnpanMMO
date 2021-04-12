@@ -33,6 +33,7 @@ public:
     Player *Get(uint Id) const;
 
     // パケットをバラ撒く
+    // TODO:距離を指定できるようにする
     void BroadcastPacket(CPacket *pPacket);
 
 private:
