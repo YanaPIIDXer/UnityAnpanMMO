@@ -73,6 +73,15 @@ public class ConnectionTestButton : MonoBehaviour
                 {
                     PacketLogInResult Result = new PacketLogInResult();
                     Result.Serialize(Stream);
+
+                    if ((PacketLogInResult.ResultCode)Result.Result == PacketLogInResult.ResultCode.Success)
+                    {
+                        Debug.Log("LogIn Success!");
+                    }
+                    else
+                    {
+                        Debug.Log("LogIn Failed... ErrorCode:" + Result.Result);
+                    }
                 }
                 break;
         }
