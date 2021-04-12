@@ -22,7 +22,9 @@ public:
 	enum EID
 	{
 		//! Pingパケット
-		Ping = 0x01,
+		LogIn = 0x01,
+		//! Pingパケット
+		Ping = 0x02,
 		
 	};
 };

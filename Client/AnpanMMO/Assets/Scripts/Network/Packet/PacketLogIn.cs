@@ -2,16 +2,16 @@
 
 namespace Network.Packet
 {
-    public class PacketPing : YanaPOnlineUtil.Packet.Packet
+    public class PacketLogIn : YanaPOnlineUtil.Packet.Packet
 	{
 
-		public override byte PacketId { get { return (byte)PacketID.Ping; } }
+		public override byte PacketId { get { return (byte)PacketID.LogIn; } }
 
 		
 
 		
 
-		PacketPing()
+		PacketLogIn()
 		{
 		}
 
