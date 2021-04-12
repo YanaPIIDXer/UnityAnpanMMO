@@ -3,6 +3,7 @@
 
 #include "YanaPServer/Application/ApplicationBase.h"
 using namespace YanaPServer::Application;
+#include "type.h"
 
 namespace YanaPServer::Peer
 {
@@ -24,6 +25,8 @@ public:
 
 protected:
 private:
+    // 次のPeerに割り振るID
+    uint NextPeerId;
 };
 
 #endif // #ifndef APPLICATION_H

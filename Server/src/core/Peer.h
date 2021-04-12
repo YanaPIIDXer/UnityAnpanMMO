@@ -10,13 +10,16 @@ using namespace YanaPServer::Peer;
 using namespace YanaPOnlineUtil::Packet;
 
 class PeerStateBase;
+class Player;
+typedef std::shared_ptr<Player> PlayerPtr;
+class Vector;
 
 // Peer
 class Peer : public CPeerBase
 {
 public:
     // コンストラクタ
-    Peer(YanaPServer::Socket::ISocket *pSocket);
+    Peer(uint InId, YanaPServer::Socket::ISocket *pSocket);
 
     // デストラクタ
     virtual ~Peer();
@@ -30,13 +33,28 @@ public:
     // Stateを設定
     void SetState(PeerStateBase *pNewState);
 
+    // ID取得
+    uint GetId() const { return Id; }
+
+    // キャラクタ取得
+    Player *GetCharacter() const { return pCharacter.get(); }
+
+    // プレイヤー構築
+    void ConfigureCharacter(const Vector &Position, float Rotation);
+
 protected:
 private:
+    // ID
+    uint Id;
+
     // State
     std::shared_ptr<PeerStateBase> pState;
 
     // パケットシリアライザ
     CPacketSerializer PacketSerializer;
+
+    // 自キャラ
+    PlayerPtr pCharacter;
 
     // パケットを受信した
     void OnRecvPacket(byte PacketID, YanaPOnlineUtil::Stream::IMemoryStream *pStream);

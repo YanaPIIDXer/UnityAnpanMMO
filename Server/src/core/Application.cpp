@@ -3,7 +3,7 @@
 
 // コンストラクタ
 Application::Application()
-    : CApplicationBase([](PeerPtr pPeer) {})
+    : CApplicationBase([](PeerPtr pPeer) {}), NextPeerId(0)
 {
 }
 
@@ -15,5 +15,7 @@ Application::~Application()
 // Peer生成
 CPeerBase *Application::CreatePeer(YanaPServer::Socket::ISocket *pSocket)
 {
-    return new Peer(pSocket);
+    auto pPeer = new Peer(NextPeerId, pSocket);
+    NextPeerId++;
+    return pPeer;
 }
