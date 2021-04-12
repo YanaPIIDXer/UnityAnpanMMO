@@ -15,6 +15,8 @@ public:
 
 protected:
 private:
+    // ログインパケットを受信した
+    void OnRecvLogIn(IMemoryStream *pStream);
 };
 
 #endif // #ifndef PEERSTATETITLE_H
