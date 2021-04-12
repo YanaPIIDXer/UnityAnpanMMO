@@ -17,7 +17,7 @@ namespace Network.Packet
 
 		$CONSTRUCTOR$
 
-		public override bool Serialize(IMemoryStream pStream)
+		public override bool Serialize(IMemoryStream Stream)
 {
 			$SERIALIZE_MEMBERS$
 			return true;
