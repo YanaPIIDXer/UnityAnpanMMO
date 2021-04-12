@@ -6,7 +6,6 @@
 #include "type.h"
 
 class Player;
-typedef std::shared_ptr<Player> PlayerPtr;
 
 // プレイヤー管理クラス
 class PlayerManager
@@ -20,7 +19,7 @@ public:
 
 private:
     // プレイヤーマップ
-    std::map<uint, PlayerPtr> PlayerMap;
+    std::map<uint, Player *> PlayerMap;
 };
 
 #endif // #ifndef PLAYERMANAGER_H
