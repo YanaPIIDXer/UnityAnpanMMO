@@ -15,6 +15,9 @@ public:
     // デストラクタ
     ~Area();
 
+    // 定期処理
+    void Poll(int DeltaTime);
+
     // プレイヤー入場
     void JoinPlayer(Player *pPlayer, const Vector &Position, float Rotation);
 

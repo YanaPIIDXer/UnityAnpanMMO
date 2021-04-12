@@ -14,6 +14,9 @@ public:
     // デストラクタ
     ~AreaManager();
 
+    // 定期処理
+    void Poll(int DeltaTime);
+
     // エリア生成
     void Make(uint Id);
 

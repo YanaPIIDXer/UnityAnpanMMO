@@ -11,6 +11,11 @@ Area::~Area()
 {
 }
 
+// 定期処理
+void Area::Poll(int DeltaTime)
+{
+}
+
 // プレイヤー入場
 void Area::JoinPlayer(Player *pPlayer, const Vector &Position, float Rotation)
 {

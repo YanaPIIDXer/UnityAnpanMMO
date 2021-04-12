@@ -13,6 +13,15 @@ AreaManager::~AreaManager()
 {
 }
 
+// 定期処理
+void AreaManager::Poll(int DeltaTime)
+{
+    for (auto It : AreaMap)
+    {
+        It.second->Poll(DeltaTime);
+    }
+}
+
 // エリア生成
 void AreaManager::Make(uint Id)
 {
