@@ -1,6 +1,12 @@
 #ifndef AREAMANAGER_H
 #define AREAMANAGER_H
 
+#include <memory>
+#include <map>
+#include "type.h"
+class Area;
+typedef std::shared_ptr<Area> AreaPtr;
+
 // エリア管理クラス
 class AreaManager
 {
@@ -9,6 +15,9 @@ public:
     ~AreaManager();
 
 private:
+    // エリアマップ
+    std::map<uint, AreaPtr> AreaMap;
+
     // ========== Singleton ==========
 public:
     // インスタンス取得
