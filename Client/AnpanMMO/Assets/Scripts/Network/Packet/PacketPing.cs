@@ -17,7 +17,7 @@ namespace Network.Packet
 
 		
 
-		public override bool Serialize(IMemoryStream pStream)
+		public override bool Serialize(IMemoryStream Stream)
 {
 			
 			return true;

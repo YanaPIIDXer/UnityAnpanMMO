@@ -15,17 +15,24 @@ namespace Network.Packet
 		Fatal,
 	};
 
-		
+		//! リザルトコード
+	int Result;
+	
 
 		public PacketLogInResult()
 		{
 		}
 
+		public PacketLogInResult(int InResult)
+	{
+		Result = InResult;
 		
+	}
 
-		public override bool Serialize(IMemoryStream pStream)
+		public override bool Serialize(IMemoryStream Stream)
 {
-			
+			Stream.Serialize(ref Result);
+		
 			return true;
 }
 	}

@@ -38,6 +38,8 @@ public:
 		Fatal,
 	};
 
+	//! リザルトコード
+	int Result;
 	
 
 	/**
@@ -50,7 +52,11 @@ public:
 	/**
 	 * @brief �R���X�g���N�^
 	 */
-	
+	PacketLogInResult(int InResult)
+	{
+		Result = InResult;
+		
+	}
 
 	/**
 	 * @fn bool Serialize(MemoryStreamInterface *pStream)
@@ -60,6 +66,7 @@ public:
 	 */
 	bool Serialize(IMemoryStream *pStream)
 	{
+		pStream->Serialize(&Result);
 		
 		return true;
 	}
