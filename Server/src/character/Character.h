@@ -1,6 +1,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
+#include "type.h"
 #include "math/Vector.h"
 
 // キャラクタクラス
@@ -8,10 +9,13 @@ class Character
 {
 public:
     // コンストラクタ
-    Character(const Vector &InPosition, float InRotation);
+    Character(uint InId, const Vector &InPosition, float InRotation);
 
     // デストラクタ
     virtual ~Character() = 0;
+
+    // IDを取得
+    uint GetId() const { return Id; }
 
     // 座標を取得
     const Vector &GetPosition() const { return Position; }
@@ -27,6 +31,9 @@ public:
 
 protected:
 private:
+    // ID
+    uint Id;
+
     // 座標
     Vector Position;
 

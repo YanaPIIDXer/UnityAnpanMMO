@@ -8,7 +8,7 @@ class Player : public Character
 {
 public:
     // コンストラクタ
-    Player(const Vector &InPosition, float InRotation);
+    Player(uint InId, const Vector &InPosition, float InRotation);
 
     // デストラクタ
     virtual ~Player();

@@ -1,8 +1,8 @@
 #include "Player.h"
 
 // コンストラクタ
-Player::Player(const Vector &InPosition, float InRotation)
-    : Character(InPosition, InRotation)
+Player::Player(uint InId, const Vector &InPosition, float InRotation)
+    : Character(InId, InPosition, InRotation)
 {
 }
 
