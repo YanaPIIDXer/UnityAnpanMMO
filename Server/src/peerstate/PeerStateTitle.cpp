@@ -27,4 +27,6 @@ void PeerStateTitle::OnRecvLogIn(IMemoryStream *pStream)
     // 何もしていないのでとりあえず成功を返している
     PacketLogInResult Result(PacketLogInResult::ResultCode::Success);
     SendPacket(&Result);
+
+    SetNextState(new PeerStateActive(GetParent()));
 }

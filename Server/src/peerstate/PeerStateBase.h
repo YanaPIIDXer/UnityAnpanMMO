@@ -45,6 +45,13 @@ protected:
     // パケット送信
     void SendPacket(CPacket *pPacket);
 
+    // 次のStateを設定
+    // ※実行時点で現在のStateは解体されるので注意する事
+    void SetNextState(PeerStateBase *pNextState);
+
+    // 親を取得
+    Peer *GetParent() { return pParent; }
+
 private:
     // 親
     Peer *pParent;

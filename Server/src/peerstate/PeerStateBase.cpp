@@ -31,6 +31,12 @@ void PeerStateBase::SendPacket(CPacket *pPacket)
     pParent->SendPacket(pPacket);
 }
 
+// 次のStateを設定
+void PeerStateBase::SetNextState(PeerStateBase *pNextState)
+{
+    pParent->SetState(pNextState);
+}
+
 // Pingを受信した
 void PeerStateBase::OnRecvPing(IMemoryStream *pStream)
 {
