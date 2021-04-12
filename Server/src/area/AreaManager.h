@@ -14,6 +14,9 @@ public:
     // デストラクタ
     ~AreaManager();
 
+    // エリア取得
+    std::weak_ptr<Area> Get(uint Id) const;
+
 private:
     // エリアマップ
     std::map<uint, AreaPtr> AreaMap;
