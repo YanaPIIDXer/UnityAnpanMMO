@@ -2,10 +2,12 @@
 {
     public enum PacketID
 	{
+		//! LogInResultパケット
+		LogInResult = 0x01,
+		//! LogInRequestパケット
+		LogInRequest = 0x02,
 		//! Pingパケット
-		LogIn = 0x01,
-		//! Pingパケット
-		Ping = 0x02,
+		Ping = 0x03,
 		
 	}
 }

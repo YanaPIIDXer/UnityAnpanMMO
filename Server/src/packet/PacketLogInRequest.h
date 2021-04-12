@@ -1,11 +1,11 @@
 ﻿/**
- * @file PacketLogIn.h
- * @brief Pingパケット
+ * @file PacketLogInRequest.h
+ * @brief LogInRequestパケット
  * @author NativePacketGenerator
  */
 
-#ifndef __PACKETLOGIN_H__
-#define __PACKETLOGIN_H__
+#ifndef __PACKETLOGINREQUEST_H__
+#define __PACKETLOGINREQUEST_H__
 
 #include "YanaPOnlineUtil/Packet/Packet.h"
 #include "YanaPOnlineUtil/Stream/MemoryStream.h"
@@ -17,9 +17,9 @@ using namespace YanaPOnlineUtil::Packet;
 using namespace YanaPOnlineUtil::Stream;
 
 /**
- * @brief Pingパケット
+ * @brief LogInRequestパケット
  */
-class PacketLogIn  : public CPacket
+class PacketLogInRequest  : public CPacket
 {
 
 public:
@@ -28,7 +28,7 @@ public:
 	 * @brief �p�P�b�g�h�c�擾.
 	 * @return �p�P�b�g�h�c
 	 */
-	virtual unsigned char GetPacketId() const override { return PacketID::LogIn; }
+	virtual unsigned char GetPacketId() const override { return PacketID::LogInRequest; }
 
 	
 
@@ -37,7 +37,7 @@ public:
 	/**
 	 * @brief �R���X�g���N�^
 	 */
-	PacketLogIn()
+	PacketLogInRequest()
 	{
 	}
 
@@ -59,4 +59,4 @@ public:
 	}
 };
 
-#endif // #ifndef __PACKETLOGIN_H__
+#endif // #ifndef __PACKETLOGINREQUEST_H__
