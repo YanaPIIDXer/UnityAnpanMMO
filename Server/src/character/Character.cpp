@@ -10,3 +10,9 @@ Character::Character(uint InId, Area *pInArea, const Vector &InPosition, float I
 Character::~Character()
 {
 }
+
+// 定期処理
+void Character::Poll(int DeltaTime)
+{
+    Update(DeltaTime);
+}

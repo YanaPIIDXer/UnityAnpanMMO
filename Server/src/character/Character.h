@@ -39,7 +39,13 @@ public:
         Rotation = NewRotation;
     }
 
+    // 定期処理
+    void Poll(int DeltaTime);
+
 protected:
+    // 内部で呼び出す定期処理
+    virtual void Update(int DeltaTime) {}
+
 private:
     // ID
     uint Id;
