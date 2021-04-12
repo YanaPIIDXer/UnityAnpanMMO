@@ -1,20 +1,20 @@
 #include "TickManager.h"
-#include <time.h>
+
+#include <iostream>
 
 TickManager TickManager::Instance;
 
 // コンストラクタ
 TickManager::TickManager()
 {
-    clock_gettime(CLOCK_REALTIME, &PrevTime);
+    PrevTime = std::chrono::system_clock::now();
 }
 
 // 毎フレームの処理.
 void TickManager::Poll()
 {
-    timespec CurrentTime;
-    clock_gettime(CLOCK_REALTIME, &CurrentTime);
-    int DeltaTime = (CurrentTime.tv_nsec - PrevTime.tv_nsec) / 1000000;
+    std::chrono::system_clock::time_point CurrentTime = std::chrono::system_clock::now();
+    int DeltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(CurrentTime - PrevTime).count();
     if (DeltaTime < 0)
     {
         // たまにCurrentTime < PrevTimeになるようなので対処。

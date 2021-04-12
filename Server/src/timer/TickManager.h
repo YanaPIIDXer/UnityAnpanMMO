@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <vector>
+#include <chrono>
 
 // 定期処理管理クラス
 class TickManager
@@ -23,7 +24,7 @@ public:
 
 private:
     // 以前の時間.
-    timespec PrevTime;
+    std::chrono::system_clock::time_point PrevTime;
 
     // 関数リスト
     std::vector<TickFunction> Functions;
