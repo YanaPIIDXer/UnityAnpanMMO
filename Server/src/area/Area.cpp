@@ -1,4 +1,5 @@
 #include "Area.h"
+#include "character/player/Player.h"
 
 // コンストラクタ
 Area::Area()
@@ -11,9 +12,10 @@ Area::~Area()
 }
 
 // プレイヤー入場
-void Area::JoinPlayer(Player *pPlayer)
+void Area::JoinPlayer(Player *pPlayer, const Vector &Position, float Rotation)
 {
     PlayerMgr.Add(pPlayer);
+    pPlayer->ChangeArea(this, Position, Rotation);
 }
 
 // プレイヤー退場

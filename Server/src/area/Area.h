@@ -3,6 +3,8 @@
 
 #include "character/player/PlayerManager.h"
 
+class Vector;
+
 // エリアクラス
 class Area
 {
@@ -14,7 +16,7 @@ public:
     ~Area();
 
     // プレイヤー入場
-    void JoinPlayer(Player *pPlayer);
+    void JoinPlayer(Player *pPlayer, const Vector &Position, float Rotation);
 
     // プレイヤー退場
     void LeavePlayer(uint Id);
