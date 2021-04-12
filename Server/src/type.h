@@ -2,6 +2,7 @@
 #define TYPE_H
 
 // C#と統一する為の型定義
+#include <stdint.h> // uint
 typedef unsigned char byte;
 typedef unsigned long ulong;
 #include <string>
