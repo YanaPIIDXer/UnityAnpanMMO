@@ -45,7 +45,7 @@ void Peer::SetState(PeerStateBase *pNewState)
 // プレイヤー構築
 void Peer::ConfigureCharacter(const Vector &Position, float Rotation)
 {
-    pCharacter = PlayerPtr(new Player(Id, Position, Rotation));
+    pCharacter = PlayerPtr(new Player(this, Position, Rotation));
 }
 
 // パケットを受信した

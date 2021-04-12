@@ -1,8 +1,9 @@
 #include "Player.h"
+#include "core/Peer.h"
 
 // コンストラクタ
-Player::Player(uint InId, const Vector &InPosition, float InRotation)
-    : Character(InId, InPosition, InRotation)
+Player::Player(Peer *pInOwner, const Vector &InPosition, float InRotation)
+    : Character(pInOwner->GetId(), InPosition, InRotation), pOwner(pInOwner)
 {
 }
 
