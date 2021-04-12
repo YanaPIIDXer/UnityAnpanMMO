@@ -13,6 +13,18 @@ public:
     // デストラクタ
     virtual ~Character() = 0;
 
+    // 座標を取得
+    const Vector &GetPosition() const { return Position; }
+
+    // 回転を取得
+    float GetRotation() const { return Rotation; }
+
+    // 座標を設定
+    void SetPosition(const Vector &NewPosition) { Position = NewPosition; }
+
+    // 回転を設定
+    void SetRotation(float NewRotation) { Rotation = NewRotation; }
+
 protected:
 private:
     // 座標
