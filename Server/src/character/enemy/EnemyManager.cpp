@@ -14,6 +14,10 @@ EnemyManager::~EnemyManager()
 // 定期処理
 void EnemyManager::Poll(int DeltaTime)
 {
+    for (auto It : EnemyMap)
+    {
+        It.second->Poll(DeltaTime);
+    }
 }
 
 // 追加

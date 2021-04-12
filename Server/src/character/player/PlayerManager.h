@@ -23,6 +23,9 @@ public:
     // デストラクタ
     ~PlayerManager();
 
+    // 定期処理
+    void Poll(int DeltaTime);
+
     // 追加
     void Add(Player *pPlayer);
 

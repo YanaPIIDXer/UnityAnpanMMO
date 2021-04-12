@@ -12,6 +12,15 @@ PlayerManager::~PlayerManager()
 {
 }
 
+// 定期処理
+void PlayerManager::Poll(int DeltaTime)
+{
+    for (auto It : PlayerMap)
+    {
+        It.second->Poll(DeltaTime);
+    }
+}
+
 // 追加
 void PlayerManager::Add(Player *pPlayer)
 {

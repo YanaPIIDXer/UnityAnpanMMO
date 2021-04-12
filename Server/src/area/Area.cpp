@@ -14,6 +14,7 @@ Area::~Area()
 // 定期処理
 void Area::Poll(int DeltaTime)
 {
+    PlayerMgr.Poll(DeltaTime);
 }
 
 // プレイヤー入場
