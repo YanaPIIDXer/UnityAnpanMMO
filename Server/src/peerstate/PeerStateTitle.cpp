@@ -19,7 +19,7 @@ PeerStateTitle::~PeerStateTitle()
 void PeerStateTitle::OnRecvLogIn(IMemoryStream *pStream)
 {
     PacketLogInRequest Request;
-    if (Request.Serialize(pStream))
+    if (!Request.Serialize(pStream))
     {
         return;
     }
