@@ -11,16 +11,16 @@ namespace Network.Packet
 
 		$MEMBERS$
 
-		$CLASS_NAME$()
+		public $CLASS_NAME$()
 		{
 		}
 
 		$CONSTRUCTOR$
 
 		public override bool Serialize(IMemoryStream pStream)
-		{
+{
 			$SERIALIZE_MEMBERS$
 			return true;
-		}
+}
 	}
 }

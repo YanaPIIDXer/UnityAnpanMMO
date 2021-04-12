@@ -11,16 +11,16 @@ namespace Network.Packet
 
 		
 
-		PacketPing()
+		public PacketPing()
 		{
 		}
 
 		
 
 		public override bool Serialize(IMemoryStream pStream)
-		{
+{
 			
 			return true;
-		}
+}
 	}
 }

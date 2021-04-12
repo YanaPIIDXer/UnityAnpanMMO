@@ -11,16 +11,16 @@ namespace Network.Packet
 
 		
 
-		PacketLogIn()
+		public PacketLogIn()
 		{
 		}
 
 		
 
 		public override bool Serialize(IMemoryStream pStream)
-		{
+{
 			
 			return true;
-		}
+}
 	}
 }
