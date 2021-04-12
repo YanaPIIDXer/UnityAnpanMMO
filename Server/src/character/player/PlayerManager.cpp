@@ -1,5 +1,6 @@
 #include "PlayerManager.h"
 #include "character/player/Player.h"
+#include "core/Peer.h"
 
 // コンストラクタ
 PlayerManager::PlayerManager()
@@ -38,4 +39,13 @@ Player *PlayerManager::Get(uint Id) const
         return nullptr;
     }
     return It->second;
+}
+
+// パケットをバラ撒く
+void PlayerManager::BroadcastPacket(CPacket *pPacket)
+{
+    for (auto It : PlayerMap)
+    {
+        It.second->GetOwner()->SendPacket(pPacket);
+    }
 }

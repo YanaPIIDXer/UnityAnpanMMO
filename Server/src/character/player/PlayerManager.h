@@ -7,6 +7,12 @@
 
 class Player;
 
+namespace YanaPOnlineUtil::Packet
+{
+    class CPacket;
+}
+using namespace YanaPOnlineUtil::Packet;
+
 // プレイヤー管理クラス
 class PlayerManager
 {
@@ -25,6 +31,9 @@ public:
 
     // 取得
     Player *Get(uint Id) const;
+
+    // パケットをバラ撒く
+    void BroadcastPacket(CPacket *pPacket);
 
 private:
     // プレイヤーマップ
