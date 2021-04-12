@@ -2,6 +2,7 @@
 #define AREA_H
 
 #include "character/player/PlayerManager.h"
+#include "character/enemy/EnemyManager.h"
 
 class Vector;
 
@@ -27,6 +28,9 @@ public:
 private:
     // プレイヤーマネージャ
     PlayerManager PlayerMgr;
+
+    // エネミーマネージャ
+    EnemyManager EnemyMgr;
 };
 
 #endif // #ifndef AREA_H

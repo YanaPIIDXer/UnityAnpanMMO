@@ -15,6 +15,7 @@ Area::~Area()
 void Area::Poll(int DeltaTime)
 {
     PlayerMgr.Poll(DeltaTime);
+    EnemyMgr.Poll(DeltaTime);
 }
 
 // プレイヤー入場
