@@ -1,5 +1,4 @@
 #include "SimpleTimer.h"
-#include "Enemy.h"
 
 // コンストラクタ
 SimpleTimer::SimpleTimer(int InInterval, const std::function<void()> &CallbackFunc)
