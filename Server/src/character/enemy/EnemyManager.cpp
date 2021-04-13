@@ -38,4 +38,6 @@ void EnemyManager::OnSpawn()
     Enemy *pEnemy = new Enemy(NextId, pArea, Pos, Rot);
     EnemyMap[NextId] = EnemyPtr(pEnemy);
     NextId++;
+
+    // TODO:周囲のクライアントへの通知をどげんかせんといかん
 }
