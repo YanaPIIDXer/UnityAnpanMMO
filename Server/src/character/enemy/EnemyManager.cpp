@@ -1,5 +1,6 @@
 #include "EnemyManager.h"
 #include "Enemy.h"
+#include "math/Random.h"
 
 // コンストラクタ
 EnemyManager::EnemyManager(Area *pInArea)
@@ -31,8 +32,7 @@ void EnemyManager::OnSpawn()
         return;
     }
 
-    // TODO:乱数で散らせる
-    Vector Pos(0, 0, 0);
+    Vector Pos(Random::GetInstance().Next(-100, 100), Random::GetInstance().Next(-100, 100), 0);
     float Rot = 0;
 
     Enemy *pEnemy = new Enemy(NextId, pArea, Pos, Rot);
