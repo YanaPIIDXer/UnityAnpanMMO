@@ -2,7 +2,8 @@
 #include "Enemy.h"
 
 // コンストラクタ
-EnemyManager::EnemyManager()
+EnemyManager::EnemyManager(Area *pInArea)
+    : pArea(pInArea), SpawnTimer(10000, std::bind(&EnemyManager::OnSpawn, this)), NextId(1)
 {
 }
 
@@ -18,10 +19,23 @@ void EnemyManager::Poll(int DeltaTime)
     {
         It.second->Poll(DeltaTime);
     }
+
+    SpawnTimer.Poll(DeltaTime);
 }
 
-// 追加
-void EnemyManager::Add(Enemy *pEnemy)
+// 生成コールバック
+void EnemyManager::OnSpawn()
 {
-    EnemyMap[pEnemy->GetId()] = EnemyPtr(pEnemy);
+    if (EnemyMap.size() > 20)
+    {
+        return;
+    }
+
+    // TODO:乱数で散らせる
+    Vector Pos(0, 0, 0);
+    float Rot = 0;
+
+    Enemy *pEnemy = new Enemy(NextId, pArea, Pos, Rot);
+    EnemyMap[NextId] = EnemyPtr(pEnemy);
+    NextId++;
 }

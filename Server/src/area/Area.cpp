@@ -3,6 +3,7 @@
 
 // コンストラクタ
 Area::Area()
+    : EnemyMgr(this)
 {
 }
 
