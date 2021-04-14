@@ -3,8 +3,8 @@
 #include "math/Random.h"
 
 // コンストラクタ
-EnemyManager::EnemyManager(Area *pInArea)
-    : pArea(pInArea), SpawnTimer(10000, std::bind(&EnemyManager::OnSpawn, this)), NextId(1)
+EnemyManager::EnemyManager(Area *pInArea, const std::function<void(Enemy *)> &InSpawnCallback)
+    : pArea(pInArea), SpawnTimer(10000, std::bind(&EnemyManager::OnSpawn, this)), NextId(1), SpawnCallback(InSpawnCallback)
 {
 }
 
@@ -39,5 +39,5 @@ void EnemyManager::OnSpawn()
     EnemyMap[NextId] = EnemyPtr(pEnemy);
     NextId++;
 
-    // TODO:周囲のクライアントへの通知をどげんかせんといかん
+    SpawnCallback(pEnemy);
 }

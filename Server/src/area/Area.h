@@ -5,6 +5,7 @@
 #include "character/enemy/EnemyManager.h"
 
 class Vector;
+class Enemy;
 
 // エリアクラス
 class Area
@@ -31,6 +32,9 @@ private:
 
     // エネミーマネージャ
     EnemyManager EnemyMgr;
+
+    // エネミーが生成された
+    void OnEnemySpawn(Enemy *pEnemy);
 };
 
 #endif // #ifndef AREA_H

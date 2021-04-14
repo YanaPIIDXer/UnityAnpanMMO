@@ -3,6 +3,7 @@
 
 #include <map>
 #include <memory>
+#include <functional>
 #include "type.h"
 #include "timer/SimpleTimer.h"
 class Enemy;
@@ -14,7 +15,7 @@ class EnemyManager
 {
 public:
     // コンストラクタ
-    EnemyManager(Area *pInArea);
+    EnemyManager(Area *pInArea, const std::function<void(Enemy *)> &InSpawnCallback);
 
     // デストラクタ
     ~EnemyManager();
@@ -37,6 +38,9 @@ private:
 
     // 生成コールバック
     void OnSpawn();
+
+    // 生成コールバック
+    std::function<void(Enemy *)> SpawnCallback;
 };
 
 #endif // #ifndef ENEMYMANAGER_H

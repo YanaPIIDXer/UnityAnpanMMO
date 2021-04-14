@@ -1,9 +1,10 @@
 #include "Area.h"
 #include "character/player/Player.h"
+#include "character/enemy/Enemy.h"
 
 // コンストラクタ
 Area::Area()
-    : EnemyMgr(this)
+    : EnemyMgr(this, std::bind(&Area::OnEnemySpawn, this, std::placeholders::_1))
 {
 }
 
@@ -30,4 +31,10 @@ void Area::JoinPlayer(Player *pPlayer, const Vector &Position, float Rotation)
 void Area::LeavePlayer(uint Id)
 {
     PlayerMgr.Remove(Id);
+}
+
+// エネミーが生成された
+void Area::OnEnemySpawn(Enemy *pEnemy)
+{
+    // TODO:クライアントへの通知
 }
