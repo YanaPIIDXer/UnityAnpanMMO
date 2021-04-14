@@ -1,113 +1,169 @@
 #include "FlexArray.h"
 
 template <>
-void FlexArray<char>::Serialize(IMemoryStream *pStream)
+bool FlexArray<char>::Serialize(IMemoryStream *pStream)
 {
-    pStream->Serialize(&CurrentSize);
+    if (!pStream->Serialize(&CurrentSize))
+    {
+        return false;
+    }
     if (CurrentSize > CurrentCapacity)
     {
         Reallocate(CurrentSize);
     }
     for (int i = 0; i < CurrentSize; i++)
     {
-        pStream->Serialize(&pArray[i]);
+        if (!pStream->Serialize(&pArray[i]))
+        {
+            return false;
+        }
     }
+    return true;
 }
 
 template <>
-void FlexArray<byte>::Serialize(IMemoryStream *pStream)
+bool FlexArray<byte>::Serialize(IMemoryStream *pStream)
 {
-    pStream->Serialize(&CurrentSize);
+    if (!pStream->Serialize(&CurrentSize))
+    {
+        return false;
+    }
     if (CurrentSize > CurrentCapacity)
     {
         Reallocate(CurrentSize);
     }
     for (int i = 0; i < CurrentSize; i++)
     {
-        pStream->Serialize(&pArray[i]);
+        if (!pStream->Serialize(&pArray[i]))
+        {
+            return false;
+        }
     }
+    return true;
 }
 
 template <>
-void FlexArray<short>::Serialize(IMemoryStream *pStream)
+bool FlexArray<short>::Serialize(IMemoryStream *pStream)
 {
-    pStream->Serialize(&CurrentSize);
+    if (!pStream->Serialize(&CurrentSize))
+    {
+        return false;
+    }
     if (CurrentSize > CurrentCapacity)
     {
         Reallocate(CurrentSize);
     }
     for (int i = 0; i < CurrentSize; i++)
     {
-        pStream->Serialize(&pArray[i]);
+        if (!pStream->Serialize(&pArray[i]))
+        {
+            return false;
+        }
     }
+    return true;
 }
 
 template <>
-void FlexArray<ushort>::Serialize(IMemoryStream *pStream)
+bool FlexArray<ushort>::Serialize(IMemoryStream *pStream)
 {
-    pStream->Serialize(&CurrentSize);
+    if (!pStream->Serialize(&CurrentSize))
+    {
+        return false;
+    }
     if (CurrentSize > CurrentCapacity)
     {
         Reallocate(CurrentSize);
     }
     for (int i = 0; i < CurrentSize; i++)
     {
-        pStream->Serialize(&pArray[i]);
+        if (!pStream->Serialize(&pArray[i]))
+        {
+            return false;
+        }
     }
+    return true;
 }
 
 template <>
-void FlexArray<int>::Serialize(IMemoryStream *pStream)
+bool FlexArray<int>::Serialize(IMemoryStream *pStream)
 {
-    pStream->Serialize(&CurrentSize);
+    if (!pStream->Serialize(&CurrentSize))
+    {
+        return false;
+    }
     if (CurrentSize > CurrentCapacity)
     {
         Reallocate(CurrentSize);
     }
     for (int i = 0; i < CurrentSize; i++)
     {
-        pStream->Serialize(&pArray[i]);
+        if (!pStream->Serialize(&pArray[i]))
+        {
+            return false;
+        }
     }
+    return true;
 }
 
 template <>
-void FlexArray<uint>::Serialize(IMemoryStream *pStream)
+bool FlexArray<uint>::Serialize(IMemoryStream *pStream)
 {
-    pStream->Serialize(&CurrentSize);
+    if (!pStream->Serialize(&CurrentSize))
+    {
+        return false;
+    }
     if (CurrentSize > CurrentCapacity)
     {
         Reallocate(CurrentSize);
     }
     for (int i = 0; i < CurrentSize; i++)
     {
-        pStream->Serialize(&pArray[i]);
+        if (!pStream->Serialize(&pArray[i]))
+        {
+            return false;
+        }
     }
+    return true;
 }
 
 template <>
-void FlexArray<string>::Serialize(IMemoryStream *pStream)
+bool FlexArray<string>::Serialize(IMemoryStream *pStream)
 {
-    pStream->Serialize(&CurrentSize);
+    if (!pStream->Serialize(&CurrentSize))
+    {
+        return false;
+    }
     if (CurrentSize > CurrentCapacity)
     {
         Reallocate(CurrentSize);
     }
     for (int i = 0; i < CurrentSize; i++)
     {
-        pStream->Serialize(&pArray[i]);
+        if (!pStream->Serialize(&pArray[i]))
+        {
+            return false;
+        }
     }
+    return true;
 }
 
 template <>
-void FlexArray<float>::Serialize(IMemoryStream *pStream)
+bool FlexArray<float>::Serialize(IMemoryStream *pStream)
 {
-    pStream->Serialize(&CurrentSize);
+    if (!pStream->Serialize(&CurrentSize))
+    {
+        return false;
+    }
     if (CurrentSize > CurrentCapacity)
     {
         Reallocate(CurrentSize);
     }
     for (int i = 0; i < CurrentSize; i++)
     {
-        pStream->Serialize(&pArray[i]);
+        if (!pStream->Serialize(&pArray[i]))
+        {
+            return false;
+        }
     }
+    return true;
 }
