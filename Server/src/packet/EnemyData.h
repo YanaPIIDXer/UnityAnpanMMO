@@ -32,6 +32,8 @@ public:
 
 	
 
+	//! ID
+	uint Id;
 	//! 座標
 	PositionPack Position;
 	
@@ -46,8 +48,9 @@ public:
 	/**
 	 * @brief �R���X�g���N�^
 	 */
-	EnemyData(PositionPack InPosition)
+	EnemyData(uint InId, PositionPack InPosition)
 	{
+		Id = InId;
 		Position = InPosition;
 		
 	}
@@ -60,6 +63,7 @@ public:
 	 */
 	bool Serialize(IMemoryStream *pStream)
 	{
+		pStream->Serialize(&Id);
 		Position.Serialize(pStream);
 		
 		return true;

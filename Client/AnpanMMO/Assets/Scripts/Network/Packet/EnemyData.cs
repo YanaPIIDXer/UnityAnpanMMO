@@ -9,7 +9,9 @@ namespace Network.Packet
 
 		
 
-		//! 座標
+		//! ID
+	public uint Id;
+	//! 座標
 	public PositionPack Position;
 	
 
@@ -17,15 +19,17 @@ namespace Network.Packet
 		{
 		}
 
-		public EnemyData(PositionPack InPosition)
+		public EnemyData(uint InId, PositionPack InPosition)
 	{
+		Id = InId;
 		Position = InPosition;
 		
 	}
 
 		public bool Serialize(IMemoryStream Stream)
 {
-			Position.Serialize(Stream);
+			Stream.Serialize(ref Id);
+		Position.Serialize(Stream);
 		
 			return true;
 }

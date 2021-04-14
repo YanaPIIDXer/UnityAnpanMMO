@@ -47,7 +47,7 @@ void Area::OnEnemySpawn(Enemy *pEnemy)
     const Vector &Pos = pEnemy->GetPosition();
     float Rotation = pEnemy->GetRotation();
     PositionPack Pack(Pos.X, Pos.Y, Pos.Z, Rotation);
-    EnemyData Data(Pack);
+    EnemyData Data(pEnemy->GetId(), Pack);
     PacketEnemyEntry Packet(Data);
     PlayerMgr.BroadcastPacket(&Packet);
 }

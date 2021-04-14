@@ -34,7 +34,7 @@ void EnemyManager::MakeEnemyList(FlexArray<EnemyData> &List)
         const Vector &Pos = pEnemy->GetPosition();
         float Rot = pEnemy->GetRotation();
         PositionPack Pack(Pos.X, Pos.Y, Pos.Z, Rot);
-        EnemyData Data(Pack);
+        EnemyData Data(pEnemy->GetId(), Pack);
         List.PushBack(Data);
     }
 }
