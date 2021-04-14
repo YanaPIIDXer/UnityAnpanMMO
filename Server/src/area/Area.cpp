@@ -1,6 +1,7 @@
 #include "Area.h"
 #include "character/player/Player.h"
 #include "character/enemy/Enemy.h"
+#include "core/Peer.h"
 #include "packet/PacketEnemyEntry.h"
 #include "packet/PacketEnemyList.h"
 
@@ -29,6 +30,9 @@ void Area::JoinPlayer(Player *pPlayer, const Vector &Position, float Rotation)
     pPlayer->ChangeArea(this, Position, Rotation);
 
     FlexArray<EnemyData> Enemys;
+    EnemyMgr.MakeEnemyList(Enemys);
+    PacketEnemyList Packet(Enemys);
+    pPlayer->GetOwner()->SendPacket(&Packet);
 }
 
 // プレイヤー退場
