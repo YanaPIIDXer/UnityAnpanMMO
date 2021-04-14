@@ -21,12 +21,14 @@ public:
 	 */
 	enum EID
 	{
+		//! エネミー出現パケット
+		EnemyEntry = 0x01,
 		//! LogInResultパケット
-		LogInResult = 0x01,
+		LogInResult = 0x02,
 		//! LogInRequestパケット
-		LogInRequest = 0x02,
+		LogInRequest = 0x03,
 		//! Pingパケット
-		Ping = 0x03,
+		Ping = 0x04,
 		
 	};
 };
