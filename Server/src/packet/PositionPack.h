@@ -10,7 +10,7 @@
 #include "YanaPOnlineUtil/Packet/Packet.h"
 #include "YanaPOnlineUtil/Stream/MemoryStream.h"
 #include "type.h"
-
+#include "YanaPOnlineUtil/Serializable/Serializable.h"
 
 using namespace YanaPOnlineUtil::Packet;
 using namespace YanaPOnlineUtil::Stream;
@@ -18,7 +18,7 @@ using namespace YanaPOnlineUtil::Stream;
 /**
  * @brief PositionPackパケット
  */
-class PositionPack 
+class PositionPack : public YanaPOnlineUtil::Serializable::ISerializable
 {
 
 public:

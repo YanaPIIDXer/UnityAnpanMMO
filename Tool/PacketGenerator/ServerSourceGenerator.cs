@@ -139,6 +139,10 @@ namespace NativePacketGenerator
 			{
 				Includes += "#include \"" + FileName + "\"\n";
 			}
+			if (Class.IsPureClass)
+			{
+				Includes += "#include \"YanaPOnlineUtil/Serializable/Serializable.h\"";
+			}
 			Template = Template.Replace("$INCLUDES$", Includes);
 
 			// クラス名.
@@ -150,15 +154,17 @@ namespace NativePacketGenerator
 			{
 				BaseClassName = Class.BaseClassName;
 				if (BaseClassName == "Packet") { BaseClassName = "CPacket"; }
-				BaseClassName = " : public " + BaseClassName;
+				BaseClassName = ": public " + BaseClassName;
+			}
+			else
+			{
+				BaseClassName = ": public YanaPOnlineUtil::Serializable::ISerializable";
 			}
 			Template = Template.Replace("$BASE_CLASS_NAME$", BaseClassName);
 
 			// パケットＩＤ
-			// @HACK:PacketBase以外のものを継承してもコイツができてしまう。
-			//		 殆ど無いケースだからあまり考える必要は無いか・・・？
 			string FunctionStr = "";
-			if(!Class.IsPureClass)
+			if(Class.BaseClassName == "Packet")
 			{
 				FunctionStr = "virtual unsigned char GetPacketId() const override { return " + Class.ScopeName + "::" + Class.PacketID + "; }";
 			}

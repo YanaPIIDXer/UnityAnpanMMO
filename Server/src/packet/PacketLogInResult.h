@@ -19,7 +19,7 @@ using namespace YanaPOnlineUtil::Stream;
 /**
  * @brief LogInResultパケット
  */
-class PacketLogInResult  : public CPacket
+class PacketLogInResult : public CPacket
 {
 
 public:

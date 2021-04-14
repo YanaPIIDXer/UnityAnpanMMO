@@ -20,7 +20,7 @@ using namespace YanaPOnlineUtil::Stream;
 /**
  * @brief エネミー出現パケット
  */
-class PacketEnemyEntry  : public CPacket
+class PacketEnemyEntry : public CPacket
 {
 
 public:

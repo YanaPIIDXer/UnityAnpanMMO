@@ -11,7 +11,7 @@
 #include "YanaPOnlineUtil/Stream/MemoryStream.h"
 #include "type.h"
 #include "PositionPack.h"
-
+#include "YanaPOnlineUtil/Serializable/Serializable.h"
 
 using namespace YanaPOnlineUtil::Packet;
 using namespace YanaPOnlineUtil::Stream;
@@ -19,7 +19,7 @@ using namespace YanaPOnlineUtil::Stream;
 /**
  * @brief エネミーデータパケット
  */
-class EnemyData 
+class EnemyData : public YanaPOnlineUtil::Serializable::ISerializable
 {
 
 public:

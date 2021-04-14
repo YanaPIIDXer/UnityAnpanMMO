@@ -31,9 +31,10 @@ void EnemyManager::MakeEnemyList(FlexArray<EnemyData> &List)
     for (auto It : EnemyMap)
     {
         EnemyPtr pEnemy = It.second;
-        Vector Pos = pEnemy->GetPosition();
-        float Rotation = pEnemy->GetRotation();
-        EnemyData Data(Pos.X, Pos.Y, Pos.Z, Rotation);
+        const Vector &Pos = pEnemy->GetPosition();
+        float Rot = pEnemy->GetRotation();
+        PositionPack Pack(Pos.X, Pos.Y, Pos.Z, Rot);
+        EnemyData Data(Pack);
         List.PushBack(Data);
     }
 }

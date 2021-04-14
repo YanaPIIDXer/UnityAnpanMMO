@@ -19,7 +19,7 @@ using namespace YanaPOnlineUtil::Stream;
 /**
  * @brief Pingパケット
  */
-class PacketPing  : public CPacket
+class PacketPing : public CPacket
 {
 
 public:

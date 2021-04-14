@@ -21,7 +21,7 @@ using namespace YanaPOnlineUtil::Stream;
 /**
  * @brief エネミーリストパケット
  */
-class PacketEnemyList  : public CPacket
+class PacketEnemyList : public CPacket
 {
 
 public:
