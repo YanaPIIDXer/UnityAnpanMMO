@@ -143,6 +143,7 @@ namespace NativePacketGenerator
 				{
 					BaseClassName = "YanaPOnlineUtil.Packet.Packet";
 				}
+				BaseClassName += " : ";
 			}
 			Template = Template.Replace("$BASE_CLASS_NAME$", BaseClassName);
 
