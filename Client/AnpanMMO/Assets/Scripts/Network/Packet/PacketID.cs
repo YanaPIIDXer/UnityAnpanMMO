@@ -2,14 +2,16 @@
 {
     public enum PacketID
 	{
+		//! エネミーリストパケット
+		EnemyList = 0x01,
 		//! エネミー出現パケット
-		EnemyEntry = 0x01,
+		EnemyEntry = 0x02,
 		//! LogInResultパケット
-		LogInResult = 0x02,
+		LogInResult = 0x03,
 		//! LogInRequestパケット
-		LogInRequest = 0x03,
+		LogInRequest = 0x04,
 		//! Pingパケット
-		Ping = 0x04,
+		Ping = 0x05,
 		
 	}
 }
