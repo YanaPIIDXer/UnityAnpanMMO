@@ -9,7 +9,7 @@ using YanaPOnlineUtil.Stream;
 /// </summary>
 /// <typeparam name="T">扱う型</typeparam>
 public class FlexArray<T> : List<T>, ISerializable
-    where T : ISerializable
+    where T : ISerializable, new()
 {
     /// <summary>
     /// シリアライズ
@@ -24,6 +24,10 @@ public class FlexArray<T> : List<T>, ISerializable
         if (Len > Count)
         {
             T[] InsertArray = new T[Len - Count];
+            for (int i = 0; i < Len - Count; i++)
+            {
+                InsertArray[i] = new T();
+            }
             AddRange(InsertArray);
         }
 
