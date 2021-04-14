@@ -2,7 +2,7 @@
 
 namespace Network.Packet
 {
-    public class EnemyData 
+    public class EnemyData : YanaPOnlineUtil.ISerializable
 	{
 
 		

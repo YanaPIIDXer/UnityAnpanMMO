@@ -2,7 +2,7 @@
 
 namespace Network.Packet
 {
-    public class PositionPack 
+    public class PositionPack : YanaPOnlineUtil.ISerializable
 	{
 
 		

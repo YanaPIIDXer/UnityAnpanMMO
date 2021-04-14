@@ -136,22 +136,24 @@ namespace NativePacketGenerator
 
 			// 基底クラス名.
 			string BaseClassName = "";
-			if(!Class.IsPureClass)
+			if (Class.IsPureClass)
+			{
+				BaseClassName = "YanaPOnlineUtil.ISerializable";
+			}
+			else
 			{
 				BaseClassName = Class.BaseClassName;
-				if (BaseClassName == "Packet")
-				{
-					BaseClassName = "YanaPOnlineUtil.Packet.Packet";
-				}
-				BaseClassName = ": " + BaseClassName;
 			}
+			if (BaseClassName == "Packet")
+			{
+				BaseClassName = "YanaPOnlineUtil.Packet.Packet";
+			}
+			BaseClassName = ": " + BaseClassName;
 			Template = Template.Replace("$BASE_CLASS_NAME$", BaseClassName);
 
 			// パケットＩＤ
-			// @HACK:PacketBase以外のものを継承してもコイツができてしまう。
-			//		 殆ど無いケースだからあまり考える必要は無いか・・・？
 			string FunctionStr = "";
-			if(!Class.IsPureClass)
+			if(Class.BaseClassName == "Packet")
 			{
 				FunctionStr = "public override byte PacketId { get { return (byte)" + Class.ScopeName + "." + Class.PacketID + "; } }";
 			}
@@ -216,14 +218,13 @@ namespace NativePacketGenerator
 			Template = Template.Replace("$PUT_MEMBERS$", PutMembers);
 
 			string SerializeMethod = "";
-			if (Class.IsPureClass)
+			if (Class.BaseClassName == "Packet")
 			{
-				SerializeMethod = "public bool Serialize(IMemoryStream Stream)";
+				SerializeMethod = "public override bool Serialize(IMemoryStream Stream)";
 			}
 			else
 			{
-				// ※ベースクラスがある＝基底クラスにSerializeメソッドがあるという決め打ち
-				SerializeMethod = "public override bool Serialize(IMemoryStream Stream)";
+				SerializeMethod = "public bool Serialize(IMemoryStream Stream)";
 			}
 			Template = Template.Replace("$SERIALIZE_METHOD$", SerializeMethod);
 
