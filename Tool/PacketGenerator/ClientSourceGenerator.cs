@@ -215,6 +215,18 @@ namespace NativePacketGenerator
 			}
 			Template = Template.Replace("$PUT_MEMBERS$", PutMembers);
 
+			string SerializeMethod = "";
+			if (Class.IsPureClass)
+			{
+				SerializeMethod = "public bool Serialize(IMemoryStream Stream)";
+			}
+			else
+			{
+				// ※ベースクラスがある＝基底クラスにSerializeメソッドがあるという決め打ち
+				SerializeMethod = "public override bool Serialize(IMemoryStream Stream)";
+			}
+			Template = Template.Replace("$SERIALIZE_METHOD$", SerializeMethod);
+
 			string SerializeFunctions = "";
 			for(int i = 0; i < Class.Members.Count; i++)
 			{

@@ -17,7 +17,7 @@ namespace Network.Packet
 
 		$CONSTRUCTOR$
 
-		public bool Serialize(IMemoryStream Stream)
+		$SERIALIZE_METHOD$
 {
 			$SERIALIZE_MEMBERS$
 			return true;
