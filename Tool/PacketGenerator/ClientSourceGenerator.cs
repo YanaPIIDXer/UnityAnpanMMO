@@ -225,9 +225,7 @@ namespace NativePacketGenerator
 				}
 				else
 				{
-					// StreamInterfaceが対応していない型は必ずStreamInterface *を引数に取る
-					// Serialize関数を定義すること。
-					SerializeFunctions += Member.Name + ".Serialize(pStream);\n\t\t";
+					SerializeFunctions += Member.Name + ".Serialize(Stream);\n\t\t";
 				}
 			}
 			Template = Template.Replace("$SERIALIZE_MEMBERS$", SerializeFunctions);
