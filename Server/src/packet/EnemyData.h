@@ -1,26 +1,25 @@
 ﻿/**
- * @file PacketEnemyEntry.h
- * @brief エネミー出現パケット
+ * @file EnemyData.h
+ * @brief エネミーデータパケット
  * @author NativePacketGenerator
  */
 
-#ifndef __PACKETENEMYENTRY_H__
-#define __PACKETENEMYENTRY_H__
+#ifndef __ENEMYDATA_H__
+#define __ENEMYDATA_H__
 
 #include "YanaPOnlineUtil/Packet/Packet.h"
 #include "YanaPOnlineUtil/Stream/MemoryStream.h"
 #include "type.h"
-#include "EnemyData.h"
-#include "PacketID.h"
+#include "PositionPack.h"
 
 
 using namespace YanaPOnlineUtil::Packet;
 using namespace YanaPOnlineUtil::Stream;
 
 /**
- * @brief エネミー出現パケット
+ * @brief エネミーデータパケット
  */
-class PacketEnemyEntry  : public CPacket
+class EnemyData 
 {
 
 public:
@@ -29,27 +28,27 @@ public:
 	 * @brief �p�P�b�g�h�c�擾.
 	 * @return �p�P�b�g�h�c
 	 */
-	virtual unsigned char GetPacketId() const override { return PacketID::EnemyEntry; }
+	
 
 	
 
-	//! データ
-	EnemyData Data;
+	//! 座標
+	PositionPack Position;
 	
 
 	/**
 	 * @brief �R���X�g���N�^
 	 */
-	PacketEnemyEntry()
+	EnemyData()
 	{
 	}
 
 	/**
 	 * @brief �R���X�g���N�^
 	 */
-	PacketEnemyEntry(EnemyData InData)
+	EnemyData(PositionPack InPosition)
 	{
-		Data = InData;
+		Position = InPosition;
 		
 	}
 
@@ -61,10 +60,10 @@ public:
 	 */
 	bool Serialize(IMemoryStream *pStream)
 	{
-		Data.Serialize(pStream);
+		Position.Serialize(pStream);
 		
 		return true;
 	}
 };
 
-#endif // #ifndef __PACKETENEMYENTRY_H__
+#endif // #ifndef __ENEMYDATA_H__

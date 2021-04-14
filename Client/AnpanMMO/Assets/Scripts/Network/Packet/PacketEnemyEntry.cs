@@ -9,23 +9,23 @@ namespace Network.Packet
 
 		
 
-		//! 座標
-	public PositionPack Position;
+		//! データ
+	public EnemyData Data;
 	
 
 		public PacketEnemyEntry()
 		{
 		}
 
-		public PacketEnemyEntry(PositionPack InPosition)
+		public PacketEnemyEntry(EnemyData InData)
 	{
-		Position = InPosition;
+		Data = InData;
 		
 	}
 
 		public override bool Serialize(IMemoryStream Stream)
 {
-			Position.Serialize(Stream);
+			Data.Serialize(Stream);
 		
 			return true;
 }
