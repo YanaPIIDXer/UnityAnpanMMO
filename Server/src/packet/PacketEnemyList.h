@@ -10,7 +10,7 @@
 #include "YanaPOnlineUtil/Packet/Packet.h"
 #include "YanaPOnlineUtil/Stream/MemoryStream.h"
 #include "type.h"
-#include "FlexArray.h"
+#include "util/FlexArray.h"
 #include "EnemyData.h"
 #include "PacketID.h"
 

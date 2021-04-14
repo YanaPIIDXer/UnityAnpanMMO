@@ -6,9 +6,11 @@
 #include <functional>
 #include "type.h"
 #include "timer/SimpleTimer.h"
+#include "util/FlexArray.h"
 class Enemy;
 typedef std::shared_ptr<Enemy> EnemyPtr;
 class Area;
+class EnemyData;
 
 // エネミーマネージャ
 class EnemyManager
@@ -22,6 +24,9 @@ public:
 
     // 定期処理
     void Poll(int DeltaTime);
+
+    // エネミーリスト構築
+    void MakeEnemyList(FlexArray<EnemyData> &List);
 
 private:
     // 所属エリア

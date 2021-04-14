@@ -2,6 +2,7 @@
 #include "character/player/Player.h"
 #include "character/enemy/Enemy.h"
 #include "packet/PacketEnemyEntry.h"
+#include "packet/PacketEnemyList.h"
 
 // コンストラクタ
 Area::Area()
@@ -26,6 +27,8 @@ void Area::JoinPlayer(Player *pPlayer, const Vector &Position, float Rotation)
 {
     PlayerMgr.Add(pPlayer);
     pPlayer->ChangeArea(this, Position, Rotation);
+
+    FlexArray<EnemyData> Enemys;
 }
 
 // プレイヤー退場

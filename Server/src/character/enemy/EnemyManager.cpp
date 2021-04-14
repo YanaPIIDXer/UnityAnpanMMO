@@ -1,6 +1,7 @@
 #include "EnemyManager.h"
 #include "Enemy.h"
 #include "math/Random.h"
+#include "packet/EnemyData.h"
 
 // コンストラクタ
 EnemyManager::EnemyManager(Area *pInArea, const std::function<void(Enemy *)> &InSpawnCallback)
@@ -22,6 +23,19 @@ void EnemyManager::Poll(int DeltaTime)
     }
 
     SpawnTimer.Poll(DeltaTime);
+}
+
+// エネミーリスト構築
+void EnemyManager::MakeEnemyList(FlexArray<EnemyData> &List)
+{
+    for (auto It : EnemyMap)
+    {
+        EnemyPtr pEnemy = It.second;
+        Vector Pos = pEnemy->GetPosition();
+        float Rotation = pEnemy->GetRotation();
+        EnemyData Data(Pos.X, Pos.Y, Pos.Z, Rotation);
+        List.PushBack(Data);
+    }
 }
 
 // 生成コールバック
