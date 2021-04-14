@@ -3,31 +3,31 @@
 namespace Network.Packet
 {
     public class PacketEnemyEntry : YanaPOnlineUtil.Packet.Packet
-	{
+    {
 
-		public override byte PacketId { get { return (byte)PacketID.EnemyEntry; } }
+        public override byte PacketId { get { return (byte)PacketID.EnemyEntry; } }
 
-		
 
-		//! 座標
-	public PositionPack Position;
-	
 
-		public PacketEnemyEntry()
-		{
-		}
+        //! 座標
+        public PositionPack Position;
 
-		public PacketEnemyEntry(PositionPack InPosition)
-	{
-		Position = InPosition;
-		
-	}
 
-		public override bool Serialize(IMemoryStream Stream)
-{
-			Position.Serialize(pStream);
-		
-			return true;
-}
-	}
+        public PacketEnemyEntry()
+        {
+        }
+
+        public PacketEnemyEntry(PositionPack InPosition)
+        {
+            Position = InPosition;
+
+        }
+
+        public override bool Serialize(IMemoryStream Stream)
+        {
+            Position.Serialize(Stream);
+
+            return true;
+        }
+    }
 }
