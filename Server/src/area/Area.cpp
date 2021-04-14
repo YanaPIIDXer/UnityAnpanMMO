@@ -1,6 +1,7 @@
 #include "Area.h"
 #include "character/player/Player.h"
 #include "character/enemy/Enemy.h"
+#include "packet/PacketEnemyEntry.h"
 
 // コンストラクタ
 Area::Area()
@@ -36,5 +37,9 @@ void Area::LeavePlayer(uint Id)
 // エネミーが生成された
 void Area::OnEnemySpawn(Enemy *pEnemy)
 {
-    // TODO:クライアントへの通知
+    const Vector &Pos = pEnemy->GetPosition();
+    float Rotation = pEnemy->GetRotation();
+    PositionPack Pack(Pos.X, Pos.Y, Pos.Z, Rotation);
+    PacketEnemyEntry Packet(Pack);
+    PlayerMgr.BroadcastPacket(&Packet);
 }
