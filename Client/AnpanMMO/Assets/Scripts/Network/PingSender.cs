@@ -13,9 +13,9 @@ namespace Network
     public class PingSender : MonoBehaviour
     {
         /// <summary>
-        /// タイムアウトまでの秒数
+        /// インターバル
         /// </summary>
-        private static readonly float TimeoutSec = 10.0f;
+        private static readonly float Interval = 10.0f;
 
         /// <summary>
         /// 最後にPingを受信してからの経過時間
@@ -53,7 +53,7 @@ namespace Network
         {
             if (bIsTimeout) { return; }
             ElapsedTime += Time.deltaTime;
-            if (ElapsedTime >= TimeoutSec)
+            if (ElapsedTime >= Interval)
             {
                 if (!bRecvPing)
                 {
@@ -62,6 +62,7 @@ namespace Network
                     return;
                 }
                 GameServerConnection.Instance.SendPacket(new PacketPing());
+                ElapsedTime -= Interval;
             }
         }
     }
