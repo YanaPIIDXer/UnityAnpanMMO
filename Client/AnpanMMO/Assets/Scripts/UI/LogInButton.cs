@@ -12,6 +12,7 @@ namespace UI
     {
         public void OnPressed()
         {
+            if (GameServerConnection.Instance.IsConnected) { return; }
             if (!GameServerConnection.Instance.Connect())
             {
                 Debug.Log("LogIn Failed...");

@@ -47,6 +47,11 @@ namespace Network
         public static GameServerConnection Instance { get; private set; }
 
         /// <summary>
+        /// 接続されているか？
+        /// </summary>
+        public bool IsConnected { get { return Connection.IsConnected; } }
+
+        /// <summary>
         /// サーバとの通信オブジェクト
         /// </summary>
         private ServerConnection Connection = new ServerConnection();
@@ -83,6 +88,7 @@ namespace Network
         /// <returns>成功したらtrueを返す</returns>
         public bool Connect()
         {
+            if (IsConnected) { return true; }
             if (!Connection.Connect("127.0.0.1", 1234)) { return false; }
             Connection.OnRecv = OnRecvData;
             if (gameObject.GetComponent<PingSender>() == null)
