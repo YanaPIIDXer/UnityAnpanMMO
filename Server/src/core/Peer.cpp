@@ -1,5 +1,4 @@
 #include "Peer.h"
-#include <iostream>
 #include "character/player/Player.h"
 #include "YanaPOnlineUtil/Packet/Packet.h"
 #include "peerstate/PeerStateTitle.h"
@@ -15,13 +14,11 @@ Peer::Peer(uint InId, YanaPServer::Socket::ISocket *pSocket)
           std::bind(&Peer::Send, this, std::placeholders::_1, std::placeholders::_2)),
       pCharacter(nullptr)
 {
-    std::cout << "Peer::Peer" << std::endl;
 }
 
 // デストラクタ
 Peer::~Peer()
 {
-    std::cout << "Peer::~Peer" << std::endl;
 }
 
 // 受信した
