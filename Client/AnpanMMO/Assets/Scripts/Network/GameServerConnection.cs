@@ -59,12 +59,12 @@ namespace Network
         /// <summary>
         /// パケット受信Subject
         /// </summary>
-        private Subject<ReceiveData> PacketSubject = new Subject<ReceiveData>();
+        private static Subject<ReceiveData> PacketSubject = new Subject<ReceiveData>();
 
         /// <summary>
         /// パケット受信Observable
         /// </summary>
-        public IObservable<ReceiveData> OnRecvPacket { get { return PacketSubject; } }
+        public static IObservable<ReceiveData> OnRecvPacket { get { return PacketSubject; } }
 
         void Awake()
         {

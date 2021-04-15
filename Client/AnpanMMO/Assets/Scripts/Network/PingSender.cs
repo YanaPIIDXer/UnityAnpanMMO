@@ -44,7 +44,7 @@ namespace Network
 
         void Awake()
         {
-            GameServerConnection.Instance.OnRecvPacket
+            GameServerConnection.OnRecvPacket
                 .Select((Data) => Data.Id == PacketID.Ping)
                 .Subscribe((_) => bRecvPing = true);
         }
