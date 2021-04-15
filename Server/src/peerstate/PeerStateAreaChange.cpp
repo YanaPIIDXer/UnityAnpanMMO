@@ -3,6 +3,8 @@
 #include "packet/PacketAreaChange.h"
 #include "packet/PacketPlayerPositionChange.h"
 #include "PeerStateActive.h"
+#include "area/AreaManager.h"
+#include "area/Area.h"
 
 // コンストラクタ
 PeerStateAreaChange::PeerStateAreaChange(Peer *pInParent, uint InAreaId, const Vector &InPosition, float InRotation)
@@ -26,5 +28,6 @@ void PeerStateAreaChange::OnRecvLoadEnd(IMemoryStream *pStream)
     PacketPlayerPositionChange Packet(PosPack);
     SendPacket(&Packet);
 
-    SetNextState(new PeerStateActive(GetParent()));
+    AreaManager::GetInstance().Get(AreaId).lock()->JoinPlayer(GetParent()->GetCharacter(), Position, Rotation);
+    SetNextState(new PeerStateActive(GetParent(), AreaId));
 }
