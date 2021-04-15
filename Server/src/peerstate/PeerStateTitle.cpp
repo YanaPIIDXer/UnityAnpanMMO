@@ -1,5 +1,5 @@
 #include "PeerStateTitle.h"
-#include "PeerStateActive.h"
+#include "PeerStateAreaChange.h"
 #include "packet/PacketLogInRequest.h"
 #include "Packet/PacketLogInResult.h"
 #include "core/Peer.h"
@@ -31,7 +31,10 @@ void PeerStateTitle::OnRecvLogIn(IMemoryStream *pStream)
     SendPacket(&Result);
 
     // TODO:本来ならDBから引っ張ってきたデータを放り込む
-    GetParent()->ConfigureCharacter(Vector::Zero, 0.0f);
+    uint AreaId = 1;
+    Vector Position = Vector::Zero;
+    float Rotation = 0.0f;
+    GetParent()->ConfigureCharacter(Position, Rotation);
 
-    SetNextState(new PeerStateActive(GetParent()));
+    SetNextState(new PeerStateAreaChange(GetParent(), AreaId, Position, Rotation));
 }
