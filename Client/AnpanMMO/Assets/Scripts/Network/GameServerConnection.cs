@@ -69,6 +69,7 @@ namespace Network
         void Awake()
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
             Serializer = new PacketSerializer((Id, Stream) =>
             {
                 ReceiveData Data = new ReceiveData((PacketID)Id, Stream);
