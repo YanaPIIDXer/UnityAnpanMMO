@@ -85,6 +85,10 @@ namespace Network
         {
             if (!Connection.Connect("127.0.0.1", 1234)) { return false; }
             Connection.OnRecv = OnRecvData;
+            if (gameObject.GetComponent<PingSender>() == null)
+            {
+                gameObject.AddComponent<PingSender>();
+            }
             return true;
         }
 
