@@ -30,7 +30,18 @@ namespace Network
         /// <returns>成功したらtrueを返す</returns>
         public bool Connect()
         {
-            return Connection.Connect("127.0.0.1", 1234);
+            if (!Connection.Connect("127.0.0.1", 1234)) { return false; }
+            Connection.OnRecv = OnRecvData;
+            return true;
+        }
+
+        /// <summary>
+        /// データを受信した
+        /// </summary>
+        /// <param name="Data">データ</param>
+        /// <param name="Length">データ長</param>
+        private void OnRecvData(byte[] Data, int Length)
+        {
         }
     }
 }
