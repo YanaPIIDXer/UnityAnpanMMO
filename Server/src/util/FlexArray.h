@@ -32,6 +32,18 @@ public:
         }
     }
 
+    // 代入演算子
+    void operator=(const FlexArray &Arg)
+    {
+        CurrentSize = Arg.CurrentSize;
+        CurrentCapacity = Arg.CurrentCapacity;
+        pArray = new T[CurrentCapacity];
+        for (int i = 0; i < CurrentSize; i++)
+        {
+            pArray[i] = Arg[i];
+        }
+    }
+
     // デストラクタ
     ~FlexArray()
     {
