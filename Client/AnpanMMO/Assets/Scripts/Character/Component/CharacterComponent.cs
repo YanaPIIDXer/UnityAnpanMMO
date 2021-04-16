@@ -17,8 +17,15 @@ namespace Character.Component
         /// <summary>
         /// コンストラクタ
         /// </summary>
+        public CharacterComponent()
+        {
+        }
+
+        /// <summary>
+        /// 所有者をセット
+        /// </summary>
         /// <param name="Owner">所有者</param>
-        public CharacterComponent(Character Owner)
+        public void SetOwner(Character Owner)
         {
             this.Owner = Owner;
         }
