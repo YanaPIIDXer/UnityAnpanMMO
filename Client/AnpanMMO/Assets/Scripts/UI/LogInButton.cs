@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Network;
+using Network.Packet;
 
 namespace UI
 {
@@ -18,6 +19,8 @@ namespace UI
                 Debug.Log("LogIn Failed...");
                 return;
             }
+            PacketLogInRequest Request = new PacketLogInRequest();
+            GameServerConnection.Instance.SendPacket(Request);
         }
     }
 }
