@@ -10,7 +10,7 @@ namespace Network.Packet
 		
 
 		//! データリスト
-	public FlexArray<EnemyData> List;
+	public FlexArray<EnemyData> List = new FlexArray<EnemyData>();
 	
 
 		public PacketEnemyList()

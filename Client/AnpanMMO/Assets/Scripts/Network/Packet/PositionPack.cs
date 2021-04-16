@@ -10,13 +10,13 @@ namespace Network.Packet
 		
 
 		//! X座標
-	public float X;
+	public float X = new float();
 	//! Y座標
-	public float Y;
+	public float Y = new float();
 	//! Z座標
-	public float Z;
+	public float Z = new float();
 	//! 回転
-	public float Rotation;
+	public float Rotation = new float();
 	
 
 		public PositionPack()

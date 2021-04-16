@@ -10,9 +10,9 @@ namespace Network.Packet
 		
 
 		//! ID
-	public uint Id;
+	public uint Id = new uint();
 	//! 座標
-	public PositionPack Position;
+	public PositionPack Position = new PositionPack();
 	
 
 		public EnemyData()

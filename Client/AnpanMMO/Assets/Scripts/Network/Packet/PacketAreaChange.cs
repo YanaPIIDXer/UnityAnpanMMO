@@ -10,7 +10,7 @@ namespace Network.Packet
 		
 
 		//! エリアID
-	public uint AreaId;
+	public uint AreaId = new uint();
 	
 
 		public PacketAreaChange()

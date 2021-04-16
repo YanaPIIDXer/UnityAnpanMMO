@@ -10,7 +10,7 @@ namespace Network.Packet
 		
 
 		//! データ
-	public EnemyData Data;
+	public EnemyData Data = new EnemyData();
 	
 
 		public PacketEnemyEntry()

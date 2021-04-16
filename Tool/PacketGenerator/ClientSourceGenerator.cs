@@ -180,7 +180,7 @@ namespace NativePacketGenerator
 			{
 				var MemberData = Class.Members[i];
 				Members += "//! " + MemberData.Comment + "\n\t";
-				Members += "public " + MemberData.TypeName + " " + MemberData.Name + ";\n\t";
+				Members += "public " + MemberData.TypeName + " " + MemberData.Name + " = new " + MemberData.TypeName + "();\n\t";
 			}
 			Template = Template.Replace("$MEMBERS$", Members);
 

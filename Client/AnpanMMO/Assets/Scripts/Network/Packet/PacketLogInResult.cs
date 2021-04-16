@@ -16,7 +16,7 @@ namespace Network.Packet
 	};
 
 		//! リザルトコード
-	public int Result;
+	public int Result = new int();
 	
 
 		public PacketLogInResult()
