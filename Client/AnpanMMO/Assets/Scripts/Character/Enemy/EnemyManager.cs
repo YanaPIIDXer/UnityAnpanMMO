@@ -5,6 +5,7 @@ using Network;
 using Network.Packet;
 using System;
 using UniRx;
+using Character.Enemy;
 
 namespace Character.Enemy
 {
@@ -13,6 +14,29 @@ namespace Character.Enemy
     /// </summary>
     public class EnemyManager : MonoBehaviour
     {
+        /// <summary>
+        /// Prefabのパス
+        /// </summary>
+        private static readonly string PrefabPath = "Prefabs/Enemy";
+
+        /// <summary>
+        /// Prefab
+        /// </summary>
+        private static GameObject Prefab = null;
+
+        /// <summary>
+        /// エネミーディクショナリ
+        /// </summary>
+        /// <typeparam name="Enemy"></typeparam>
+        /// <returns></returns>
+        private Dictionary<uint, Enemy> EnemyDict = new Dictionary<uint, Enemy>();
+
+        /// <summary>
+        /// 生成待ちリスト
+        /// ※コールバックの中でSpawnできないのでこういった対処を行っている
+        /// </summary>
+        private List<EnemyData> SpawnList = new List<EnemyData>();
+
         void Awake()
         {
             GameServerConnection.OnRecvPacket
@@ -23,7 +47,7 @@ namespace Character.Enemy
                     Packet.Serialize(Data.Stream);
                     foreach (var EnData in Packet.List)
                     {
-                        Spawn(EnData);
+                        SpawnList.Add(EnData);
                     }
                 });
 
@@ -33,8 +57,16 @@ namespace Character.Enemy
                 {
                     PacketEnemyEntry Packet = new PacketEnemyEntry();
                     Packet.Serialize(Data.Stream);
-                    Spawn(Packet.Data);
+                    SpawnList.Add(Packet.Data);
                 });
+        }
+
+        void Update()
+        {
+            if (SpawnList.Count == 0) { return; }
+            var Data = SpawnList[0];
+            SpawnList.RemoveAt(0);
+            Spawn(Data);
         }
 
         /// <summary>
@@ -43,8 +75,16 @@ namespace Character.Enemy
         /// <param name="Data">サーバから受信したエネミーデータ</param>
         private void Spawn(EnemyData Data)
         {
+            if (Prefab == null)
+            {
+                Prefab = Resources.Load<GameObject>(PrefabPath);
+                Debug.Assert(Prefab != null);
+            }
+
             Vector3 Position = new Vector3(Data.Position.X, Data.Position.Y, Data.Position.Z);
-            Debug.Log("Spawn Enemy At:" + Position.ToString());
+            float Rotation = Data.Position.Rotation;
+            var EnemyObj = Instantiate<GameObject>(Prefab, Position, Quaternion.Euler(0.0f, Rotation, 0.0f));
+            EnemyDict.Add(Data.Id, EnemyObj.GetComponent<Enemy>());
         }
     }
 }
