@@ -19,6 +19,11 @@ namespace Network
         private static readonly string ScenePrefix = "Area";
 
         /// <summary>
+        /// ゲームシーンか？
+        /// </summary>
+        private bool bIsGameScene = false;
+
+        /// <summary>
         /// 読み込んでいるシーン名
         /// </summary>
         private string LoadingSceneName = "";
@@ -35,7 +40,15 @@ namespace Network
         {
             if (LoadingSceneName == "") { return; }
 
-            SceneManager.LoadScene(LoadingSceneName);
+            if (!bIsGameScene)
+            {
+                // ゲームシーンではない場合は一旦ゲームシーンを読み込む
+                bIsGameScene = true;
+                SceneManager.LoadScene("Game");
+                return;
+            }
+
+            SceneManager.LoadScene(LoadingSceneName, LoadSceneMode.Additive);
             LoadingSceneName = "";
             GameServerConnection.Instance.SendPacket(new PacketAreaLoadEnd());
         }
