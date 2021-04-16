@@ -22,6 +22,16 @@ namespace Network
         /// </summary>
         public IObservable<Unit> OnLogInSuccess { get { return LogInSuccessSubject; } }
 
+        /// <summary>
+        /// ログイン失敗Subject
+        /// </summary>
+        private Subject<PacketLogInResult.ResultCode> LogInFailedSubject = new Subject<PacketLogInResult.ResultCode>();
+
+        /// <summary>
+        /// ログインに失敗した
+        /// </summary>
+        public IObservable<PacketLogInResult.ResultCode> OnLogInFailed { get { return LogInFailedSubject; } }
+
         void Awake()
         {
             GameServerConnection.OnRecvPacket
@@ -32,7 +42,7 @@ namespace Network
                     Result.Serialize(Data.Stream);
                     if (Result.Result != (byte)PacketLogInResult.ResultCode.Success)
                     {
-                        Debug.Log("LogIn Failed...");
+                        LogInFailedSubject.OnNext((PacketLogInResult.ResultCode)Result.Result);
                         return;
                     }
                     LogInSuccessSubject.OnNext(Unit.Default);
