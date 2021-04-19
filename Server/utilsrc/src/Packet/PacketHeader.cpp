@@ -2,33 +2,37 @@
 
 namespace YanaPOnlineUtil
 {
-namespace Packet
-{
+	namespace Packet
+	{
 
-const unsigned int CPacketHeader::HeaderSize = 2;
+		const unsigned int CPacketHeader::HeaderSize = 3;
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-CPacketHeader::CPacketHeader()
-	: PacketId(0)
-	, Size(0)
-{
-}
+		// ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^
+		CPacketHeader::CPacketHeader()
+			: PacketId(0), Size(0)
+		{
+		}
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-CPacketHeader::CPacketHeader(unsigned char InPacketId, unsigned char InSize)
-	: PacketId(InPacketId)
-	, Size(InSize)
-{
-}
+		// ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^
+		CPacketHeader::CPacketHeader(unsigned char InPacketId, unsigned short InSize)
+			: PacketId(InPacketId), Size(InSize)
+		{
+		}
 
-// ƒVƒŠƒAƒ‰ƒCƒY
-bool CPacketHeader::Serialize(Stream::IMemoryStream *pStream)
-{
-	if (!pStream->Serialize(&PacketId)) { return false; }
-	if (!pStream->Serialize(&Size)) { return false; }
+		// ï¿½Vï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Cï¿½Y
+		bool CPacketHeader::Serialize(Stream::IMemoryStream *pStream)
+		{
+			if (!pStream->Serialize(&PacketId))
+			{
+				return false;
+			}
+			if (!pStream->Serialize(&Size))
+			{
+				return false;
+			}
 
-	return true;
-}
+			return true;
+		}
 
-}
+	}
 }

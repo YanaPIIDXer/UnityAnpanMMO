@@ -6,71 +6,68 @@
 
 namespace YanaPOnlineUtil
 {
-namespace Packet
-{
+	namespace Packet
+	{
 
-/**
+		/**
  * @class CPacketHeader
- * @brief ƒpƒPƒbƒgƒwƒbƒ_
+ * @brief ï¿½pï¿½Pï¿½bï¿½gï¿½wï¿½bï¿½_
  */
-class CPacketHeader : public Serializable::ISerializable
-{
+		class CPacketHeader : public Serializable::ISerializable
+		{
 
-public:
+		public:
+			/**
+	 * @brief ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^
+	 */
+			CPacketHeader();
 
-	/**
-	 * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+			/**
+	 * @brief ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^
+	 * @param[in] InPacketId ï¿½pï¿½Pï¿½bï¿½gï¿½hï¿½c
+	 * @param[in] InSize ï¿½Tï¿½Cï¿½Y
 	 */
-	CPacketHeader();
-	
-	/**
-	 * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 * @param[in] InPacketId ƒpƒPƒbƒg‚h‚c
-	 * @param[in] InSize ƒTƒCƒY
-	 */
-	CPacketHeader(unsigned char InPacketId, unsigned char InSize);
-	
-	/**
-	 * @brief ƒfƒXƒgƒ‰ƒNƒ^
-	 */
-	virtual ~CPacketHeader() {}
+			CPacketHeader(unsigned char InPacketId, unsigned short InSize);
 
-	/**
+			/**
+	 * @brief ï¿½fï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^
+	 */
+			virtual ~CPacketHeader() {}
+
+			/**
 	 * @fn unsigned char GetPacketId() const
-	 * @brief ƒpƒPƒbƒg‚h‚cæ“¾
-	 * @return ƒpƒPƒbƒg‚h‚c
+	 * @brief ï¿½pï¿½Pï¿½bï¿½gï¿½hï¿½cï¿½æ“¾
+	 * @return ï¿½pï¿½Pï¿½bï¿½gï¿½hï¿½c
 	 */
-	unsigned char GetPacketId() const { return PacketId; }
+			unsigned char GetPacketId() const { return PacketId; }
 
-	/**
+			/**
 	 * @fn unsigned char GetSize() const
-	 * @brief ƒTƒCƒYæ“¾
-	 * @return ƒTƒCƒY
+	 * @brief ï¿½Tï¿½Cï¿½Yï¿½æ“¾
+	 * @return ï¿½Tï¿½Cï¿½Y
 	 */
-	unsigned char GetSize() const { return Size; }
+			unsigned short GetSize() const { return Size; }
 
-	/**
+			/**
 	 * @fn virtual bool Serialize(Util::Stream::IMemoryStream *pStream) override
-	 * @brief ƒVƒŠƒAƒ‰ƒCƒY
-	 * @param[in] pStream ƒXƒgƒŠ[ƒ€
-	 * @return ¬Œ÷‚µ‚½‚çtrue‚ğ•Ô‚·B
+	 * @brief ï¿½Vï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Cï¿½Y
+	 * @param[in] pStream ï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½
+	 * @return ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½trueï¿½ï¿½Ô‚ï¿½ï¿½B
 	 */
-	virtual bool Serialize(Stream::IMemoryStream *pStream) override;
+			virtual bool Serialize(Stream::IMemoryStream *pStream) override;
 
-	//! ƒwƒbƒ_ƒTƒCƒY
-	static const unsigned int HeaderSize;
+			//! ï¿½wï¿½bï¿½_ï¿½Tï¿½Cï¿½Y
+			static const unsigned int HeaderSize;
 
-private:
+		private:
+			// ï¿½pï¿½Pï¿½bï¿½gï¿½hï¿½c
+			unsigned char PacketId;
 
-	// ƒpƒPƒbƒg‚h‚c
-	unsigned char PacketId;
+			// ï¿½Tï¿½Cï¿½Y
+			unsigned short Size;
+		};
 
-	// ƒTƒCƒY
-	unsigned char Size;
-
-};
-
-}
+	}
 }
 
-#endif		// #ifndef __PACKETHEADER_H__
+#endif // #ifndef __PACKETHEADER_H__
