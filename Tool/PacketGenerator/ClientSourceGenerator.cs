@@ -234,11 +234,11 @@ namespace NativePacketGenerator
 				var Member = Class.Members[i];
 				if(Member.IsPrimitive)
 				{
-					SerializeFunctions += "Stream.Serialize(ref " + Member.Name + ");\n\t\t";
+					SerializeFunctions += "if(!Stream.Serialize(ref " + Member.Name + ")) { return false; }\n\t\t";
 				}
 				else
 				{
-					SerializeFunctions += Member.Name + ".Serialize(Stream);\n\t\t";
+					SerializeFunctions += "if (!" + Member.Name + ".Serialize(Stream)) { return false; }\n\t\t";
 				}
 			}
 			Template = Template.Replace("$SERIALIZE_MEMBERS$", SerializeFunctions);

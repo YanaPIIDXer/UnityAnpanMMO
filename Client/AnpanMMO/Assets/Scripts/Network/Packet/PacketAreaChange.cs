@@ -25,7 +25,7 @@ namespace Network.Packet
 
 		public override bool Serialize(IMemoryStream Stream)
 {
-			Stream.Serialize(ref AreaId);
+			if(!Stream.Serialize(ref AreaId)) { return false; }
 		
 			return true;
 }

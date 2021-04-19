@@ -234,13 +234,13 @@ namespace NativePacketGenerator
 				var Member = Class.Members[i];
 				if(Member.IsPrimitive)
 				{
-					SerializeFunctions += "pStream->Serialize(&" + Member.Name + ");\n\t\t";
+					SerializeFunctions += "if(!pStream->Serialize(&" + Member.Name + ")) { return false; }\n\t\t";
 				}
 				else
 				{
 					// StreamInterfaceが対応していない型は必ずStreamInterface *を引数に取る
 					// Serialize関数を定義すること。
-					SerializeFunctions += Member.Name + ".Serialize(pStream);\n\t\t";
+					SerializeFunctions += "if (!" + Member.Name + ".Serialize(pStream)) { return false; }\n\t\t";
 				}
 			}
 			Template = Template.Replace("$SERIALIZE_MEMBERS$", SerializeFunctions);

@@ -34,10 +34,10 @@ namespace Network.Packet
 
 		public bool Serialize(IMemoryStream Stream)
 {
-			Stream.Serialize(ref X);
-		Stream.Serialize(ref Y);
-		Stream.Serialize(ref Z);
-		Stream.Serialize(ref Rotation);
+			if(!Stream.Serialize(ref X)) { return false; }
+		if(!Stream.Serialize(ref Y)) { return false; }
+		if(!Stream.Serialize(ref Z)) { return false; }
+		if(!Stream.Serialize(ref Rotation)) { return false; }
 		
 			return true;
 }

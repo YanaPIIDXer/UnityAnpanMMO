@@ -68,10 +68,10 @@ public:
 	 */
 	bool Serialize(IMemoryStream *pStream)
 	{
-		pStream->Serialize(&X);
-		pStream->Serialize(&Y);
-		pStream->Serialize(&Z);
-		pStream->Serialize(&Rotation);
+		if(!pStream->Serialize(&X)) { return false; }
+		if(!pStream->Serialize(&Y)) { return false; }
+		if(!pStream->Serialize(&Z)) { return false; }
+		if(!pStream->Serialize(&Rotation)) { return false; }
 		
 		return true;
 	}

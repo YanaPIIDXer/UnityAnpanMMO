@@ -60,7 +60,7 @@ public:
 	 */
 	bool Serialize(IMemoryStream *pStream)
 	{
-		pStream->Serialize(&AreaId);
+		if(!pStream->Serialize(&AreaId)) { return false; }
 		
 		return true;
 	}

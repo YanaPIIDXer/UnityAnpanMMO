@@ -62,7 +62,7 @@ public:
 	 */
 	bool Serialize(IMemoryStream *pStream)
 	{
-		List.Serialize(pStream);
+		if (!List.Serialize(pStream)) { return false; }
 		
 		return true;
 	}

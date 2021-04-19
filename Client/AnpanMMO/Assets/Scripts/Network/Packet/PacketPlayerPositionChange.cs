@@ -25,7 +25,7 @@ namespace Network.Packet
 
 		public override bool Serialize(IMemoryStream Stream)
 {
-			Position.Serialize(Stream);
+			if (!Position.Serialize(Stream)) { return false; }
 		
 			return true;
 }

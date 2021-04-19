@@ -66,7 +66,7 @@ public:
 	 */
 	bool Serialize(IMemoryStream *pStream)
 	{
-		pStream->Serialize(&Result);
+		if(!pStream->Serialize(&Result)) { return false; }
 		
 		return true;
 	}

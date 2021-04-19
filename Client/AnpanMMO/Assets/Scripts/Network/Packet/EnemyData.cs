@@ -28,8 +28,8 @@ namespace Network.Packet
 
 		public bool Serialize(IMemoryStream Stream)
 {
-			Stream.Serialize(ref Id);
-		Position.Serialize(Stream);
+			if(!Stream.Serialize(ref Id)) { return false; }
+		if (!Position.Serialize(Stream)) { return false; }
 		
 			return true;
 }

@@ -31,7 +31,7 @@ namespace Network.Packet
 
 		public override bool Serialize(IMemoryStream Stream)
 {
-			Stream.Serialize(ref Result);
+			if(!Stream.Serialize(ref Result)) { return false; }
 		
 			return true;
 }

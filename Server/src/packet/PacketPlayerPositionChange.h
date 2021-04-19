@@ -61,7 +61,7 @@ public:
 	 */
 	bool Serialize(IMemoryStream *pStream)
 	{
-		Position.Serialize(pStream);
+		if (!Position.Serialize(pStream)) { return false; }
 		
 		return true;
 	}
