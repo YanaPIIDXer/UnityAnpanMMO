@@ -63,6 +63,14 @@ namespace Network
             }, Connection.Send);
         }
 
+        void Update()
+        {
+            if (IsConnected)
+            {
+                Serializer.Poll();
+            }
+        }
+
         /// <summary>
         /// 接続
         /// </summary>
@@ -95,7 +103,7 @@ namespace Network
         /// <param name="Length">データ長</param>
         private void OnRecvData(byte[] Data, int Length)
         {
-            Serializer.OnRecv(Data);
+            Serializer.OnRecv(Data, Length);
         }
     }
 }
