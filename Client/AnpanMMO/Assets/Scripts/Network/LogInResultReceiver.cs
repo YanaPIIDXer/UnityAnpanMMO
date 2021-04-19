@@ -36,16 +36,16 @@ namespace Network
         void Awake()
         {
             GameServerConnection.PacketMethods[PacketID.LogInResult] += (Stream) =>
+            {
+                PacketLogInResult Result = new PacketLogInResult();
+                Result.Serialize(Stream);
+                if (Result.Result != (byte)PacketLogInResult.ResultCode.Success)
                 {
-                    PacketLogInResult Result = new PacketLogInResult();
-                    Result.Serialize(Stream);
-                    if (Result.Result != (byte)PacketLogInResult.ResultCode.Success)
-                    {
-                        LogInFailedSubject.OnNext((PacketLogInResult.ResultCode)Result.Result);
-                        return;
-                    }
-                    LogInSuccessSubject.OnNext(Unit.Default);
-                };
+                    LogInFailedSubject.OnNext((PacketLogInResult.ResultCode)Result.Result);
+                    return;
+                }
+                LogInSuccessSubject.OnNext(Unit.Default);
+            };
         }
     }
 }

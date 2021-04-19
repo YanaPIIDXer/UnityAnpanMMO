@@ -38,22 +38,23 @@ namespace Character.Enemy
 
         void Awake()
         {
+            // FIXME:届いていないので調査
             GameServerConnection.PacketMethods[PacketID.EnemyList] += (Stream) =>
+            {
+                PacketEnemyList Packet = new PacketEnemyList();
+                Packet.Serialize(Stream);
+                foreach (var EnData in Packet.List)
                 {
-                    PacketEnemyList Packet = new PacketEnemyList();
-                    Packet.Serialize(Stream);
-                    foreach (var EnData in Packet.List)
-                    {
-                        SpawnList.Add(EnData);
-                    }
-                };
+                    SpawnList.Add(EnData);
+                }
+            };
 
             GameServerConnection.PacketMethods[PacketID.EnemyEntry] += (Stream) =>
-                {
-                    PacketEnemyEntry Packet = new PacketEnemyEntry();
-                    Packet.Serialize(Stream);
-                    SpawnList.Add(Packet.Data);
-                };
+            {
+                PacketEnemyEntry Packet = new PacketEnemyEntry();
+                Packet.Serialize(Stream);
+                SpawnList.Add(Packet.Data);
+            };
         }
 
         void Update()

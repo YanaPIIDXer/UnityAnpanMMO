@@ -30,7 +30,12 @@ namespace Network
         void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            GameServerConnection.PacketMethods[PacketID.AreaChange] += OnRecvAreaChange;
+            GameServerConnection.PacketMethods[PacketID.AreaChange] += (Stream) =>
+            {
+                PacketAreaChange Packet = new PacketAreaChange();
+                Packet.Serialize(Stream);
+                LoadingSceneName = ScenePrefix + string.Format("{0:D6}", Packet.AreaId);
+            };
         }
 
         void Update()
@@ -48,17 +53,6 @@ namespace Network
             SceneManager.LoadScene(LoadingSceneName, LoadSceneMode.Additive);
             LoadingSceneName = "";
             GameServerConnection.Instance.SendPacket(new PacketAreaLoadEnd());
-        }
-
-        /// <summary>
-        /// エリア切り替えを受信した
-        /// </summary>
-        /// <param name="Data">受信データ</param>
-        private void OnRecvAreaChange(IMemoryStream Stream)
-        {
-            PacketAreaChange Packet = new PacketAreaChange();
-            Packet.Serialize(Stream);
-            LoadingSceneName = ScenePrefix + string.Format("{0:D6}", Packet.AreaId);
         }
     }
 }
