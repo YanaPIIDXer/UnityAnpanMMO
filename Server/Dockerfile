@@ -9,3 +9,7 @@ ADD ./utilsrc /util
 RUN cd /util && make
 
 ADD ./src /app
+
+RUN make
+
+CMD ["bin/server.out"]
