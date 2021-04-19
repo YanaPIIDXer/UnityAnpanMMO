@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Network.Packet;
-using System;
-using UniRx;
 using UnityEngine.SceneManagement;
+using YanaPOnlineUtil.Stream;
 
 namespace Network
 {
@@ -31,9 +30,7 @@ namespace Network
         void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            GameServerConnection.OnRecvPacket
-                .Where((Data) => Data.Id == PacketID.AreaChange)
-                .Subscribe(OnRecvAreaChange);
+            GameServerConnection.PacketMethods[PacketID.AreaChange] += OnRecvAreaChange;
         }
 
         void Update()
@@ -57,10 +54,10 @@ namespace Network
         /// エリア切り替えを受信した
         /// </summary>
         /// <param name="Data">受信データ</param>
-        private void OnRecvAreaChange(ReceiveData Data)
+        private void OnRecvAreaChange(IMemoryStream Stream)
         {
             PacketAreaChange Packet = new PacketAreaChange();
-            Packet.Serialize(Data.Stream);
+            Packet.Serialize(Stream);
             LoadingSceneName = ScenePrefix + string.Format("{0:D6}", Packet.AreaId);
         }
     }

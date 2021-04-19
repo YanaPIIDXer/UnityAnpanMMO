@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UniRx;
 using Network.Packet;
+using YanaPOnlineUtil.Stream;
 
 namespace Network
 {
@@ -34,19 +35,17 @@ namespace Network
 
         void Awake()
         {
-            GameServerConnection.OnRecvPacket
-                .Where((Data) => Data.Id == PacketID.LogInResult)
-                .Subscribe((Data) =>
+            GameServerConnection.PacketMethods[PacketID.LogInResult] += (Stream) =>
                 {
                     PacketLogInResult Result = new PacketLogInResult();
-                    Result.Serialize(Data.Stream);
+                    Result.Serialize(Stream);
                     if (Result.Result != (byte)PacketLogInResult.ResultCode.Success)
                     {
                         LogInFailedSubject.OnNext((PacketLogInResult.ResultCode)Result.Result);
                         return;
                     }
                     LogInSuccessSubject.OnNext(Unit.Default);
-                });
+                };
         }
     }
 }

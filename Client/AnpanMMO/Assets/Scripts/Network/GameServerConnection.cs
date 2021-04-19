@@ -1,41 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UniRx;
-using System;
 using Network.Packet;
 using YanaPOnlineUtil.Stream;
 using YanaPOnlineUtil.Packet;
 
 namespace Network
 {
-    /// <summary>
-    /// 受信データ
-    /// </summary>
-    public class ReceiveData
-    {
-        /// <summary>
-        /// パケットＩＤ
-        /// </summary>
-        public PacketID Id { get; private set; }
-
-        /// <summary>
-        /// ストリーム
-        /// </summary>
-        public IMemoryStream Stream { get; private set; }
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="Id">パケットＩＤ</param>
-        /// <param name="Stream">ストリーム</param>
-        public ReceiveData(PacketID Id, IMemoryStream Stream)
-        {
-            this.Id = Id;
-            this.Stream = Stream;
-        }
-    }
-
     /// <summary>
     /// ゲームサーバとの接続管理
     /// </summary>
@@ -62,14 +34,29 @@ namespace Network
         private PacketSerializer Serializer = null;
 
         /// <summary>
-        /// パケット受信Subject
+        /// パケット処理用delegate
         /// </summary>
-        private static Subject<ReceiveData> PacketSubject = new Subject<ReceiveData>();
+        public delegate void PacketMethod(IMemoryStream Stream);
 
         /// <summary>
         /// パケット受信Observable
         /// </summary>
-        public static IObservable<ReceiveData> OnRecvPacket { get { return PacketSubject; } }
+        public static Dictionary<PacketID, PacketMethod> PacketMethods
+        {
+            get
+            {
+                if (_PacketMethods == null)
+                {
+                    _PacketMethods = new Dictionary<PacketID, PacketMethod>();
+                    foreach (var Id in Enum.GetValues(typeof(PacketID)))
+                    {
+                        _PacketMethods.Add((PacketID)Id, null);
+                    }
+                }
+                return _PacketMethods;
+            }
+        }
+        private static Dictionary<PacketID, PacketMethod> _PacketMethods = null;
 
         void Awake()
         {
@@ -77,8 +64,7 @@ namespace Network
             DontDestroyOnLoad(gameObject);
             Serializer = new PacketSerializer((Id, Stream) =>
             {
-                ReceiveData Data = new ReceiveData((PacketID)Id, Stream);
-                PacketSubject.OnNext(Data);
+                PacketMethods[(PacketID)Id].Invoke(Stream);
             }, Connection.Send);
         }
 

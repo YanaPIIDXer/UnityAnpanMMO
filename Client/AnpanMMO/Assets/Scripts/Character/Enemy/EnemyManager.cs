@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Network;
 using Network.Packet;
-using System;
-using UniRx;
+using YanaPOnlineUtil.Stream;
 using Character.Enemy;
 
 namespace Character.Enemy
@@ -39,26 +38,22 @@ namespace Character.Enemy
 
         void Awake()
         {
-            GameServerConnection.OnRecvPacket
-                .Where((Data) => Data.Id == PacketID.EnemyList)
-                .Subscribe((Data) =>
+            GameServerConnection.PacketMethods[PacketID.EnemyList] += (Stream) =>
                 {
                     PacketEnemyList Packet = new PacketEnemyList();
-                    Packet.Serialize(Data.Stream);
+                    Packet.Serialize(Stream);
                     foreach (var EnData in Packet.List)
                     {
                         SpawnList.Add(EnData);
                     }
-                });
+                };
 
-            GameServerConnection.OnRecvPacket
-                .Where((Data) => Data.Id == PacketID.EnemyEntry)
-                .Subscribe((Data) =>
+            GameServerConnection.PacketMethods[PacketID.EnemyEntry] += (Stream) =>
                 {
                     PacketEnemyEntry Packet = new PacketEnemyEntry();
-                    Packet.Serialize(Data.Stream);
+                    Packet.Serialize(Stream);
                     SpawnList.Add(Packet.Data);
-                });
+                };
         }
 
         void Update()
