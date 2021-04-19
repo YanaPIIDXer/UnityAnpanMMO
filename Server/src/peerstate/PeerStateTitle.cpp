@@ -1,7 +1,7 @@
 #include "PeerStateTitle.h"
 #include "PeerStateAreaChange.h"
 #include "packet/PacketLogInRequest.h"
-#include "Packet/PacketLogInResult.h"
+#include "packet/PacketLogInResult.h"
 #include "core/Peer.h"
 #include "math/Vector.h"
 
