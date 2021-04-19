@@ -44,7 +44,7 @@ namespace Network
 
         void Awake()
         {
-            GameServerConnection.PacketMethods[PacketID.Ping] += (_) => bRecvPing = true;
+            GameServerConnection.PacketMethods[PacketID.Ping] = (_) => bRecvPing = true;
         }
 
         void Update()

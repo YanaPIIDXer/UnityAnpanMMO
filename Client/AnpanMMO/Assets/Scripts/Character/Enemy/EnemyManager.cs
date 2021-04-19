@@ -39,7 +39,7 @@ namespace Character.Enemy
         void Awake()
         {
             // FIXME:届いていないので調査
-            GameServerConnection.PacketMethods[PacketID.EnemyList] += (Stream) =>
+            GameServerConnection.PacketMethods[PacketID.EnemyList] = (Stream) =>
             {
                 PacketEnemyList Packet = new PacketEnemyList();
                 Packet.Serialize(Stream);
@@ -49,7 +49,7 @@ namespace Character.Enemy
                 }
             };
 
-            GameServerConnection.PacketMethods[PacketID.EnemyEntry] += (Stream) =>
+            GameServerConnection.PacketMethods[PacketID.EnemyEntry] = (Stream) =>
             {
                 PacketEnemyEntry Packet = new PacketEnemyEntry();
                 Packet.Serialize(Stream);

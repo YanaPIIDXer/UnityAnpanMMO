@@ -35,7 +35,7 @@ namespace Network
 
         void Awake()
         {
-            GameServerConnection.PacketMethods[PacketID.LogInResult] += (Stream) =>
+            GameServerConnection.PacketMethods[PacketID.LogInResult] = (Stream) =>
             {
                 PacketLogInResult Result = new PacketLogInResult();
                 Result.Serialize(Stream);

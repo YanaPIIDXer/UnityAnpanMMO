@@ -34,20 +34,15 @@ namespace Network
         private PacketSerializer Serializer = null;
 
         /// <summary>
-        /// パケット処理用delegate
-        /// </summary>
-        public delegate void PacketMethod(IMemoryStream Stream);
-
-        /// <summary>
         /// パケット受信Observable
         /// </summary>
-        public static Dictionary<PacketID, PacketMethod> PacketMethods
+        public static Dictionary<PacketID, Action<IMemoryStream>> PacketMethods
         {
             get
             {
                 if (_PacketMethods == null)
                 {
-                    _PacketMethods = new Dictionary<PacketID, PacketMethod>();
+                    _PacketMethods = new Dictionary<PacketID, Action<IMemoryStream>>();
                     foreach (var Id in Enum.GetValues(typeof(PacketID)))
                     {
                         _PacketMethods.Add((PacketID)Id, null);
@@ -56,7 +51,7 @@ namespace Network
                 return _PacketMethods;
             }
         }
-        private static Dictionary<PacketID, PacketMethod> _PacketMethods = null;
+        private static Dictionary<PacketID, Action<IMemoryStream>> _PacketMethods = null;
 
         void Awake()
         {
@@ -64,7 +59,7 @@ namespace Network
             DontDestroyOnLoad(gameObject);
             Serializer = new PacketSerializer((Id, Stream) =>
             {
-                PacketMethods[(PacketID)Id].Invoke(Stream);
+                PacketMethods[(PacketID)Id]?.Invoke(Stream);
             }, Connection.Send);
         }
 

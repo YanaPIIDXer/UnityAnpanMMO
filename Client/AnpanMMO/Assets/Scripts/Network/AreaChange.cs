@@ -30,7 +30,7 @@ namespace Network
         void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            GameServerConnection.PacketMethods[PacketID.AreaChange] += (Stream) =>
+            GameServerConnection.PacketMethods[PacketID.AreaChange] = (Stream) =>
             {
                 PacketAreaChange Packet = new PacketAreaChange();
                 Packet.Serialize(Stream);
