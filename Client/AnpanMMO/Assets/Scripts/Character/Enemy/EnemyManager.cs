@@ -38,7 +38,6 @@ namespace Character.Enemy
 
         void Awake()
         {
-            // FIXME:届いていないので調査
             GameServerConnection.PacketMethods[PacketID.EnemyList] = (Stream) =>
             {
                 PacketEnemyList Packet = new PacketEnemyList();
