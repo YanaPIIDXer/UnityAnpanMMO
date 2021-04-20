@@ -3,6 +3,7 @@
 #include "core/Peer.h"
 #include "packet/PacketPlayerEntry.h"
 #include "packet/PacketPlayerList.h"
+#include "packet/PacketPlayerMoved.h"
 
 // コンストラクタ
 PlayerManager::PlayerManager()
@@ -65,6 +66,20 @@ Player *PlayerManager::Get(uint Id) const
         return nullptr;
     }
     return It->second;
+}
+
+// プレイヤーが移動した
+void PlayerManager::OnPlayerMove(uint Id)
+{
+    auto It = PlayerMap.find(Id);
+    if (It == PlayerMap.end())
+    {
+        return;
+    }
+    Vector Position = It->second->GetPosition();
+    float Rotation = It->second->GetRotation();
+    PacketPlayerMoved Packet(Id, PositionPack(Position.X, Position.Y, Position.Z, Rotation));
+    BroadcastPacket(&Packet, Id);
 }
 
 // パケットをバラ撒く

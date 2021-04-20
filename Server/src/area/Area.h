@@ -26,6 +26,9 @@ public:
     // プレイヤー退場
     void LeavePlayer(uint Id);
 
+    // プレイヤーが移動した
+    void OnPlayerMove(uint Id);
+
 private:
     // プレイヤーマネージャ
     PlayerManager PlayerMgr;

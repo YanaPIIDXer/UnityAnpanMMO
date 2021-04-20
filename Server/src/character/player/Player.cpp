@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "core/Peer.h"
+#include "area/Area.h"
 
 // コンストラクタ
 Player::Player(Peer *pInOwner, const Vector &InPosition, float InRotation)
@@ -10,4 +11,11 @@ Player::Player(Peer *pInOwner, const Vector &InPosition, float InRotation)
 // デストラクタ
 Player::~Player()
 {
+}
+
+// 移動
+void Player::Move(const Vector &Position, float Rotation)
+{
+    SetPosition(Position);
+    SetRotation(Rotation);
 }

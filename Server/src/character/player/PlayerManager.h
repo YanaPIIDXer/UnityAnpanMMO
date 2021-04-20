@@ -35,6 +35,9 @@ public:
     // 取得
     Player *Get(uint Id) const;
 
+    // プレイヤーが移動した
+    void OnPlayerMove(uint Id);
+
     // パケットをバラ撒く
     // TODO:距離を指定できるようにする
     void BroadcastPacket(CPacket *pPacket, uint IgnoreId = 0);

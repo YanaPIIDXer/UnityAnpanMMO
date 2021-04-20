@@ -41,6 +41,12 @@ void Area::LeavePlayer(uint Id)
     PlayerMgr.Remove(Id);
 }
 
+// プレイヤーが移動した
+void Area::OnPlayerMove(uint Id)
+{
+    PlayerMgr.OnPlayerMove(Id);
+}
+
 // エネミーが生成された
 void Area::OnEnemySpawn(Enemy *pEnemy)
 {

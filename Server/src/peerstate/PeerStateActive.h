@@ -18,6 +18,9 @@ protected:
 private:
     // エリアID
     uint AreaId;
+
+    // プレイヤーの移動を受け取った
+    void OnRecvPlayerMove(IMemoryStream *pStream);
 };
 
 #endif // #ifndef PEERSTATEACTIVE_H

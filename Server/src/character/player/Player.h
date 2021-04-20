@@ -17,6 +17,9 @@ public:
     // 所有者を取得
     Peer *GetOwner() const { return pOwner; }
 
+    // 移動
+    void Move(const Vector &Position, float Rotation);
+
 protected:
 private:
     // 所有者
