@@ -37,7 +37,7 @@ namespace Character.Player.Component
         {
             Vector3 MoveVec = Vector3.zero;
             MoveVec.x = Input.GetAxis("Horizontal");
-            MoveVec.y = Input.GetAxis("Vertical");
+            MoveVec.z = Input.GetAxis("Vertical");
             MoveVec.Normalize();
             RigidBody.velocity = MoveVec;
         }
