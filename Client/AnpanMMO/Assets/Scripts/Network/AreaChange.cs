@@ -22,11 +22,6 @@ namespace Network
         /// </summary>
         private bool bIsGameScene = false;
 
-        /// <summary>
-        /// 読み込んでいるシーン名
-        /// </summary>
-        private string LoadingSceneName = "";
-
         void Awake()
         {
             DontDestroyOnLoad(gameObject);
@@ -34,25 +29,17 @@ namespace Network
             {
                 PacketAreaChange Packet = new PacketAreaChange();
                 Packet.Serialize(Stream);
-                LoadingSceneName = ScenePrefix + string.Format("{0:D6}", Packet.AreaId);
+
+                if (!bIsGameScene)
+                {
+                    // ゲームシーンではない場合は一旦ゲームシーンを読み込む
+                    bIsGameScene = true;
+                    SceneManager.LoadScene("Game");
+                }
+                var SceneName = ScenePrefix + string.Format("{0:D6}", Packet.AreaId);
+                SceneManager.LoadScene(SceneName, LoadSceneMode.Additive);
+                GameServerConnection.Instance.SendPacket(new PacketAreaLoadEnd());
             };
-        }
-
-        void Update()
-        {
-            if (LoadingSceneName == "") { return; }
-
-            if (!bIsGameScene)
-            {
-                // ゲームシーンではない場合は一旦ゲームシーンを読み込む
-                bIsGameScene = true;
-                SceneManager.LoadScene("Game");
-                return;
-            }
-
-            SceneManager.LoadScene(LoadingSceneName, LoadSceneMode.Additive);
-            LoadingSceneName = "";
-            GameServerConnection.Instance.SendPacket(new PacketAreaLoadEnd());
         }
     }
 }

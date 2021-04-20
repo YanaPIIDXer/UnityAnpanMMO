@@ -30,12 +30,6 @@ namespace Character.Enemy
         /// <returns></returns>
         private Dictionary<uint, Enemy> EnemyDict = new Dictionary<uint, Enemy>();
 
-        /// <summary>
-        /// 生成待ちリスト
-        /// ※コールバックの中でSpawnできないのでこういった対処を行っている
-        /// </summary>
-        private List<EnemyData> SpawnList = new List<EnemyData>();
-
         void Awake()
         {
             GameServerConnection.PacketMethods[PacketID.EnemyList] = (Stream) =>
@@ -44,7 +38,7 @@ namespace Character.Enemy
                 Packet.Serialize(Stream);
                 foreach (var EnData in Packet.List)
                 {
-                    SpawnList.Add(EnData);
+                    Spawn(EnData);
                 }
             };
 
@@ -52,16 +46,8 @@ namespace Character.Enemy
             {
                 PacketEnemyEntry Packet = new PacketEnemyEntry();
                 Packet.Serialize(Stream);
-                SpawnList.Add(Packet.Data);
+                Spawn(Packet.Data);
             };
-        }
-
-        void Update()
-        {
-            if (SpawnList.Count == 0) { return; }
-            var Data = SpawnList[0];
-            SpawnList.RemoveAt(0);
-            Spawn(Data);
         }
 
         /// <summary>
