@@ -37,6 +37,14 @@ public:
 		LogInRequest = 0x07,
 		//! Pingパケット
 		Ping = 0x08,
+		//! プレイヤーリストパケット
+		PlayerList = 0x09,
+		//! プレイヤー出現パケット
+		PlayerEntry = 0x0A,
+		//! プレイヤー移動パケット
+		PlayerMove = 0x0B,
+		//! プレイヤーが移動したパケット
+		PlayerMoved = 0x0C,
 		
 	};
 };
