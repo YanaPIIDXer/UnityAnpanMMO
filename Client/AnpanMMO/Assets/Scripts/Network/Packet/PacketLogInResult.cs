@@ -16,22 +16,26 @@ namespace Network.Packet
 	};
 
 		//! リザルトコード
-	public int Result = new int();
+	public byte Result = new byte();
+	//! キャラクタID
+	public uint CharacterId = new uint();
 	
 
 		public PacketLogInResult()
 		{
 		}
 
-		public PacketLogInResult(int InResult)
+		public PacketLogInResult(byte InResult, uint InCharacterId)
 	{
 		Result = InResult;
+		CharacterId = InCharacterId;
 		
 	}
 
 		public override bool Serialize(IMemoryStream Stream)
 {
 			if(!Stream.Serialize(ref Result)) { return false; }
+		if(!Stream.Serialize(ref CharacterId)) { return false; }
 		
 			return true;
 }

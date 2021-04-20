@@ -39,7 +39,9 @@ public:
 	};
 
 	//! リザルトコード
-	int Result;
+	byte Result;
+	//! キャラクタID
+	uint CharacterId;
 	
 
 	/**
@@ -52,9 +54,10 @@ public:
 	/**
 	 * @brief �R���X�g���N�^
 	 */
-	PacketLogInResult(int InResult)
+	PacketLogInResult(byte InResult, uint InCharacterId)
 	{
 		Result = InResult;
+		CharacterId = InCharacterId;
 		
 	}
 
@@ -67,6 +70,7 @@ public:
 	bool Serialize(IMemoryStream *pStream)
 	{
 		if(!pStream->Serialize(&Result)) { return false; }
+		if(!pStream->Serialize(&CharacterId)) { return false; }
 		
 		return true;
 	}
