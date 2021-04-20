@@ -37,7 +37,7 @@ public:
 
     // パケットをバラ撒く
     // TODO:距離を指定できるようにする
-    void BroadcastPacket(CPacket *pPacket, uint IgnoreId = -1);
+    void BroadcastPacket(CPacket *pPacket, uint IgnoreId = 0);
 
 private:
     // プレイヤーマップ
