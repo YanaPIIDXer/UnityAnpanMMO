@@ -1,6 +1,8 @@
 #include "PlayerManager.h"
 #include "character/player/Player.h"
 #include "core/Peer.h"
+#include "packet/PacketPlayerEntry.h"
+#include "packet/PacketPlayerList.h"
 
 // コンストラクタ
 PlayerManager::PlayerManager()
@@ -24,8 +26,23 @@ void PlayerManager::Poll(int DeltaTime)
 // 追加
 void PlayerManager::Add(Player *pPlayer)
 {
+    // まずは他キャラリストを取得して送信
+    FlexArray<PlayerData> List;
+    for (auto It : PlayerMap)
+    {
+        const auto &Position = It.second->GetPosition();
+        List.PushBack(PlayerData(It.second->GetId(), PositionPack(Position.X, Position.Y, Position.Z, It.second->GetRotation())));
+    }
+    PacketPlayerList ListPacket(List);
+    pPlayer->GetOwner()->SendPacket(&ListPacket);
+
     uint Id = pPlayer->GetId();
     PlayerMap[Id] = pPlayer;
+
+    // 他のキャラに追加を通知
+    const auto &Position = pPlayer->GetPosition();
+    PacketPlayerEntry EntryPacket(PlayerData(Id, PositionPack(Position.X, Position.Y, Position.Z, pPlayer->GetRotation())));
+    BroadcastPacket(&EntryPacket, Id);
 }
 
 // 削除
