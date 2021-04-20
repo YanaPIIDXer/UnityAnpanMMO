@@ -59,7 +59,7 @@ namespace Character.Player
                 PacketPlayerEntry Packet = new PacketPlayerEntry();
                 Packet.Serialize(Stream);
                 Spawn(Packet.Data);
-            }
+            };
         }
 
         /// <summary>
