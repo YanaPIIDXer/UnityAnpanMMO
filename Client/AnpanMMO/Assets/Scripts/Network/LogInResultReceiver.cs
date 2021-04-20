@@ -45,7 +45,7 @@ namespace Network
                     LogInFailedSubject.OnNext((PacketLogInResult.ResultCode)Result.Result);
                     return;
                 }
-                PlayerData.PlayerId = Result.CharacterId;
+                Character.Player.PlayerData.PlayerId = Result.CharacterId;
                 LogInSuccessSubject.OnNext(Unit.Default);
             };
         }
