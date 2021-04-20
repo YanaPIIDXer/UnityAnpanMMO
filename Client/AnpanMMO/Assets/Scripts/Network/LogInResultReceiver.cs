@@ -5,6 +5,7 @@ using System;
 using UniRx;
 using Network.Packet;
 using YanaPOnlineUtil.Stream;
+using Character.Player;
 
 namespace Network
 {
@@ -44,6 +45,7 @@ namespace Network
                     LogInFailedSubject.OnNext((PacketLogInResult.ResultCode)Result.Result);
                     return;
                 }
+                PlayerData.PlayerId = Result.CharacterId;
                 LogInSuccessSubject.OnNext(Unit.Default);
             };
         }
