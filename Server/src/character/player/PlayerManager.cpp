@@ -51,10 +51,14 @@ Player *PlayerManager::Get(uint Id) const
 }
 
 // パケットをバラ撒く
-void PlayerManager::BroadcastPacket(CPacket *pPacket)
+void PlayerManager::BroadcastPacket(CPacket *pPacket, uint IgnoreId)
 {
     for (auto It : PlayerMap)
     {
+        if (It.second->GetId() == IgnoreId)
+        {
+            continue;
+        }
         It.second->GetOwner()->SendPacket(pPacket);
     }
 }
