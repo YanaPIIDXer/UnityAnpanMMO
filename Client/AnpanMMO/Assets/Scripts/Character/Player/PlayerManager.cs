@@ -88,6 +88,10 @@ namespace Character.Player
         {
             PacketPlayerMoved Packet = new PacketPlayerMoved();
             Packet.Serialize(Stream);
+            uint Id = Packet.Id;
+            Vector3 Destination = new Vector3(Packet.Position.X, Packet.Position.Y, Packet.Position.Z);
+            // TODO:回転
+            PlayerDic[Id].SetMove(Destination, 1.0f);   // TODO:移動時間がマジックナンバーになっているので後程解消
         }
 
         /// <summary>
