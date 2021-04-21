@@ -24,6 +24,7 @@ namespace Character.Player
         public void InitializeAsPlayerCharacter()
         {
             AddCharacterComponent(new PlayerMove());
+            AddCharacterComponent(new PlayerMovePacketSender());
         }
     }
 }
