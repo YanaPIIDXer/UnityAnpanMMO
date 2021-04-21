@@ -18,4 +18,6 @@ void Player::Move(const Vector &Position, float Rotation)
 {
     SetPosition(Position);
     SetRotation(Rotation);
+
+    GetArea()->OnPlayerMove(GetId());
 }

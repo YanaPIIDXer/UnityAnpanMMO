@@ -31,6 +31,9 @@ public:
     // 回転を設定
     void SetRotation(float NewRotation) { Rotation = NewRotation; }
 
+    // 所属エリア取得
+    Area *GetArea() const { return pArea; }
+
     // 所属エリア変更
     void ChangeArea(Area *pNewArea, const Vector &NewPosition, float NewRotation)
     {
