@@ -11,7 +11,10 @@ namespace Character.Player
     /// </summary>
     public class Player : Character
     {
-        void Awake()
+        /// <summary>
+        /// 初期化
+        /// </summary>
+        protected override void Init()
         {
             AddCharacterComponent(new PlayerMove());
         }

@@ -9,5 +9,11 @@ namespace Character.Enemy
     /// </summary>
     public class Enemy : Character
     {
+        /// <summary>
+        /// 初期化
+        /// </summary>
+        protected override void Init()
+        {
+        }
     }
 }
