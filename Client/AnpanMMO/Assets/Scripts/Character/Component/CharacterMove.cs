@@ -57,7 +57,7 @@ namespace Character.Component
         {
             if (!IsMoving) { return; }
 
-            OwnerTrans.position += MoveVector;
+            OwnerTrans.position += MoveVector * Time.deltaTime;
             LastTime -= Time.deltaTime;
             if (LastTime <= 0.0f)
             {
