@@ -16,6 +16,13 @@ namespace Character.Player
         /// </summary>
         protected override void Init()
         {
+        }
+
+        /// <summary>
+        /// 自分が操作するキャラとして初期化
+        /// </summary>
+        public void InitializeAsPlayerCharacter()
+        {
             AddCharacterComponent(new PlayerMove());
         }
     }

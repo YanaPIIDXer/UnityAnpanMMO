@@ -52,7 +52,9 @@ namespace Character.Player
             Vector3 Position = new Vector3(Packet.Position.X, Packet.Position.Y, Packet.Position.Z);
             float Rotation = Packet.Position.Rotation;
             var PlayerObj = Instantiate<GameObject>(PlayerPrefab, Position, Quaternion.Euler(0.0f, Rotation, 0.0f));
-            PlayerDic.Add(PlayerData.PlayerId, PlayerObj.GetComponent<Player>());
+            var PlayerCmp = PlayerObj.GetComponent<Player>();
+            PlayerCmp.InitializeAsPlayerCharacter();
+            PlayerDic.Add(PlayerData.PlayerId, PlayerCmp);
         }
 
         /// <summary>
